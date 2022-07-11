@@ -1,10 +1,7 @@
-package model;
+package Model;
 
 import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Voos {
     private int nmrDoVoo;
@@ -14,49 +11,49 @@ public class Voos {
     private String destino;
     private Date duracaoVoo;
     private int numeroAssentos;
-    private List<Usuario> AssentosComprados;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    public Voos(String data, float preco, String origem, String destino, Date duracaoVoo, int numeroAssentos) throws ParseException {
-        this.data = (Date) sdf.parse(data);
+
+    public Voos(int nmrDoVoo, Date data, float preco, String origem, String destino, Date duracaoVoo, int numeroAssentos) {
+        this.nmrDoVoo = nmrDoVoo;
+        this.data = data;
         this.preco = preco;
         this.origem = origem;
         this.destino = destino;
         this.duracaoVoo = duracaoVoo;
         this.numeroAssentos = numeroAssentos;
-        AssentosComprados = new LinkedList<>();
+        this.sdf = sdf;
     }
 
-    public int assentosDisp(){
-        return this.numeroAssentos - this.AssentosComprados.size();
+    public Date getData() {
+        return data;
     }
 
-    public void adicionarUsuario(Usuario usuario){
-        AssentosComprados.add(usuario);
+    public float getPreco() {
+        return preco;
+    }
+
+    public String getOrigem() {
+        return origem;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public Date getDuracaoVoo() {
+        return duracaoVoo;
+    }
+
+    public int getNumeroAssentos() {
+        return numeroAssentos;
     }
 
     public int getNmrDoVoo() {
         return nmrDoVoo;
     }
 
-    public Usuario buscarUsuario(String cpf){
-        for(Usuario u : AssentosComprados){
-            if(u.getCpf().equals(cpf))
-                return u;
-            else
-                return null;
-        }
-        return null;
-    }
 
-    public void deletarUsuario(String cpf){
-        Usuario u = buscarUsuario(cpf);
-        if(u != null){
-            AssentosComprados.remove(u);
-        } else {
-            System.out.println("Usuario não esta no voo");
-        }
-    }
 
     public void getDuracao(){
         //calcular a distancia com a API de localização.
@@ -64,11 +61,11 @@ public class Voos {
 
 
     public String toString() {
-        return "Numero do Voo: " + nmrDoVoo +
-                "Data: " + data +
-                "Preço: " + preco +
-                "Origem: " + origem +
-                "Destino: " + destino +
+        return "Numero do Voo: " + nmrDoVoo + "\n" +
+                "Data: " + data + "\n" +
+                "Preço: " + preco + "\n" +
+                "Origem: " + origem + "\n" +
+                "Destino: " + destino + "\n" +
                 "Duração do Voo: " + duracaoVoo;
     }
 }

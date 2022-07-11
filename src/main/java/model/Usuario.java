@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 public class Usuario {
     String nome;
@@ -36,5 +36,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    @Override
+    public String toString() {
+        return "nome: " + nome + '\n' +
+                "cpf: " + cpf + '\n' +
+                "email: " + email + '\n' +
+                "senha: " + senha;
     }
 }
