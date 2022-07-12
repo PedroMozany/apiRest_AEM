@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Gerente extends Usuario {
     private int matricula;
