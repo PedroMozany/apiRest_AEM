@@ -11,11 +11,11 @@ import java.util.List;
 
 import model.Voos;
 
-public class DaoVoo {
+public class VooDAO {
 	
 	private Connection connection;
 	
-	public DaoVoo(Connection connection) {
+	public VooDAO(Connection connection) {
 		this.connection = connection;
 	}
 	
