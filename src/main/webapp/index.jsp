@@ -8,6 +8,10 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
+<<<<<<< Updated upstream
+<a href="hello-servlet">Hello Servlet</a>
+=======
 <a href="WEB-INF/view/telaLogin.jsp">Hello Servlet</a>
+>>>>>>> Stashed changes
 </body>
 </html>
