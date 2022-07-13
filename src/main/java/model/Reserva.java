@@ -9,7 +9,11 @@ public class Reserva {
 
     private int idReserva;
     private Voos  voo;
+
     private  List<Usuario> listReserva;
+
+
+
 
 
     public Reserva(Voos voo) {
@@ -18,7 +22,7 @@ public class Reserva {
     }
 
 
-    public Reserva(int idReserva, int numVoo, List<Usuario> listReserva) {
+    public Reserva(int idReserva, Voos voo, List<Usuario> listReserva) {
         this.idReserva = idReserva;
         this.voo = voo;
         listReserva = listReserva;
@@ -33,8 +37,8 @@ public class Reserva {
     }
 
 
-    public void fazerReserva(Usuario usuario, Voos voos) throws ExceptionCheio {
-        if (verificarLotacao(voos)) {
+    public void fazerReserva(Usuario usuario) throws ExceptionCheio {
+        if (verificarLotacao(voo)) {
             throw new ExceptionCheio("Não a vaga disponivel");
         } else {
             listReserva.add(usuario);
@@ -69,9 +73,10 @@ public class Reserva {
 
     public String listPassageiros() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Numero Voo: " + this.voo);
+        sb.append(this.voo + "\n");
+        sb.append("LISTA DE PASSAGEIROS" + "\n");
         for (Usuario usuario : listReserva) {
-            sb.append("Nome: " + usuario.getNome() + "|" + "CPF: " + usuario.getCpf());
+            sb.append("Nome: " + usuario.getNome() + "|" + "CPF: " + usuario.getCpf()  + "\n");
         }
         return sb.toString();
     }

@@ -8,7 +8,7 @@ public class UsuarioDAO {
 
     private Connection connection;
 
-    UsuarioDAO(Connection connection){
+   public UsuarioDAO(Connection connection){
         this.connection = connection;
     }
 
@@ -22,7 +22,6 @@ public class UsuarioDAO {
             pstm.setString(2, usuario.getCpf());
             pstm.setString(3, usuario.getEmail());
             pstm.setString(4, usuario.getSenha());
-
             pstm.execute();
 
             try(ResultSet rst = pstm.getGeneratedKeys()){

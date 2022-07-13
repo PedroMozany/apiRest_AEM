@@ -6,17 +6,15 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConectionFactoryVoo {
+public class ConectionFactory {
     public DataSource dataSource;
 
-    public ConectionFactoryVoo(){
+    public ConectionFactory(){
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
-        comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/redteam.voos?useTimezone=true&serverTimezone=UTC");
+        comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/redteam?useTimezone=true&serverTimezone=UTC");
         comboPooledDataSource.setUser("root");
-        comboPooledDataSource.setPassword("root");
-
+        comboPooledDataSource.setPassword("admin123");
         comboPooledDataSource.setMaxPoolSize(15);
-
         this.dataSource = comboPooledDataSource;
     }
 

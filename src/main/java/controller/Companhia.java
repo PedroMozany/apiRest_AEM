@@ -15,7 +15,7 @@ public class Companhia {
 
     public void adicionarVoo(Usuario usuario, int numReserva) throws ExceptionCheio {
         Reserva reserva = buscaReserva(numReserva);
-        reserva.fazerReserva(usuario, reserva.getVoo());
+        reserva.fazerReserva(usuario);
     }
 
 

@@ -1,10 +1,21 @@
 package model;
 
 public class Usuario {
-    String nome;
-    String cpf;
-    String email;
-    String senha;
+    protected String nome;
+    protected String cpf;
+    protected String email;
+    protected String senha;
+
+    public Usuario() {
+
+    }
+    public Usuario(String nome, String cpf, String email, String senha) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
+    }
+
 
     public String getNome() {
         return nome;
@@ -18,9 +29,6 @@ public class Usuario {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     public String getEmail() {
         return email;
