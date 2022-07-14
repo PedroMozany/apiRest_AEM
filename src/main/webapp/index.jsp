@@ -8,6 +8,6 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="WEB-INF/views/telaLogin.jsp">Hello Servlet</a>
+<a href="Entrada?acao=MostraLogin">Login</a>
 </body>
 </html>

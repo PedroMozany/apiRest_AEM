@@ -28,8 +28,8 @@ public class Reserva {
         listReserva = listReserva;
     }
 
-    public  boolean verificarLotacao(Voos voos) {
-        if (voos.getNumeroAssentos() == listReserva.size()) {
+    public  boolean verificarLotacao() {
+        if (voo.getNumeroAssentos() == listReserva.size()) {
             return true;
         } else {
             return false;
@@ -38,7 +38,7 @@ public class Reserva {
 
 
     public void fazerReserva(Usuario usuario) throws ExceptionCheio {
-        if (verificarLotacao(voo)) {
+        if (verificarLotacao()) {
             throw new ExceptionCheio("Não a vaga disponivel");
         } else {
             listReserva.add(usuario);
