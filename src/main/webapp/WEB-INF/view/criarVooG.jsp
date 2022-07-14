@@ -28,11 +28,11 @@
 
                             <div>
                                 <label for="destino" class="form-label">Data do voo</label>
-                                <input type="date" class="form-control" id="destino" aria-describedby="destinoVoo" >
+                                <input type="date" class="form-control" id="destino" aria-describedby="destinoVoo" required >
                             </div>
                             <div >
                                 <label for="precoVoo" class="form-label">Preço</label>
-                                <input type="number"  class="form-control" id="precoVoo"  >
+                                <input type="number"  class="form-control" id="precoVoo" required>
                             </div>
 
                             <div >
@@ -53,7 +53,7 @@
                             </div>
                             <div  >
                                 <label for="duracaoVoo" class="form-label">Duracao</label>
-                                <input type="time"  class="form-control" id="duracaoVoo"  >
+                                <input type="time"  class="form-control" id="duracaoVoo" required>
                             </div>
                             <div >
                                 <label for="numeroAssentos" class="form-label">Numero de Assentos</label>
