@@ -9,7 +9,7 @@
 <H1 style="text-align: center; margin-top: 30px;">Fazer cadastro</H1>
 <div class="container">
     <br>
-    <form class="row align-items-center" action="MUDAR AQUI A AÇÃO CUIDADO NA HORA QUE TIVER FZND EM A IMPLEMENTACAO EM" method="post">
+    <form class="row align-items-center" action="Entrada?acao=Cadastro" method="post">
         <div class="col">
             <label for="validationServer01" class="form-label">Nome:</label>
             <input type="text" class="form-control" id="validationServer01" name="nome" required>

@@ -8,6 +8,6 @@ import java.io.IOException;
 public class MostraVoos implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return "forward:PaginaCompraDoVoo.jsp";
+        return "forward:listaVoo.jsp";
     }
 }
