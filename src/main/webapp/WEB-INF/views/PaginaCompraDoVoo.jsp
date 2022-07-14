@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
   <title>Comprar Passagem</title>
@@ -7,13 +8,15 @@
 
 <body>
 <H1 style="text-align: center; margin-top: 30px;">Finalizar compra</H1>
+<p style="text-align: center; font-weight: 600; font-size: larger; margin-top: 50px;">Informações sobre sua viagem:</p>
 <div>
-  <p style="text-align: center; font-weight: 600; font-size: larger; margin-top: 50px;">Informações sobre sua viagem:</p>
-  <p style="text-align: center; font-weight: 400; font-size: large;">Data: ${variavel da data do voo}</p>
-  <p style="text-align: center; font-weight: 400; font-size: large;">Origem do Voo: ${variavel da origem do voo}</p>
-  <p style="text-align: center; font-weight: 400; font-size: large;">Destino do Voo: ${variavel do destino do voo}</p>
-  <p style="text-align: center; font-weight: 400; font-size: large;">Duração da viagem: ${variavel da duração}</p>
-  <p style="text-align: center; font-weight: 400; font-size: large;">Preço: ${variavel do preco}</p>
+  <c:forEach items="${listaVoo}" var="voo">
+    <p style="text-align: center; font-weight: 400; font-size: large;">Data: ${voo.data}</p>
+    <p style="text-align: center; font-weight: 400; font-size: large;">Origem do Voo: ${voo.origem}</p>
+    <p style="text-align: center; font-weight: 400; font-size: large;">Destino do Voo: ${voo.destino}</p>
+    <p style="text-align: center; font-weight: 400; font-size: large;">Duração da viagem: ${voo.duracao}</p>
+    <p style="text-align: center; font-weight: 400; font-size: large;">Preço: ${voo.preco}</p>
+  </c:forEach>
 </div>
 <br>
 <br>
