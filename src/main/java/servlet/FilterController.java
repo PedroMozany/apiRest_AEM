@@ -36,7 +36,7 @@ public class FilterController implements Filter {
         String[] redirecionamento = nome.split(":");
 
         if (redirecionamento[0].equals("forward")) {
-            request.getRequestDispatcher("WEB-INF/view/" + redirecionamento[1]).forward(request, response);
+            request.getRequestDispatcher("WEB-INF/views/" + redirecionamento[1]).forward(request, response);
         } else {
             response.sendRedirect(redirecionamento[1]);
         }
