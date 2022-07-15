@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Voos</title>
+    <title>Seus Voos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
@@ -12,16 +12,16 @@
 </h1>
 
 <h3 style="text-align: center; margin-top: 15px;">
-  Voos Disponiveis
+  Seus Voos Comprados
 </h3>
 <div  style="padding-top:15px; text-align: center;">
-  <form action="Entrada?acao=MostraLogin" method="post">
-  <button type="button" class="btn btn-info">Login/Cadastro</button>
+  <form action="Entrada?acao=MostraVoos" method="post">
+  <button type="button" class="btn btn-info">Voos disponiveis</button>
   </form>
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
     
-    <form action="Entrada?acao=VerificaLogin" method="post" class="row g-6">
+    <form action="Entrada?acao=CancelaVoo" method="post" class="row g-6">
     <table class="table table-striped-columns table-hover table-sm align-middle">
       <thead>
         <tr class="table-dark">
@@ -45,7 +45,7 @@
             <td>${voo.duracaoVoo}</td>
             <td>${voo.preco}</td>
             <td>${voo.numeroAssentos}</td>
-            <td><button type="button" class="btn btn-success">Comprar</button></td>
+            <td><button type="button" class="btn btn-danger">Cancelar</button></td>
           </tr>
       </c:forEach>
       </tbody>
