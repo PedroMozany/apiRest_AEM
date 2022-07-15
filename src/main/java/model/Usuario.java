@@ -9,6 +9,12 @@ public class Usuario {
     public Usuario() {
 
     }
+
+    public Usuario(String nome, String email) {
+        this.nome = nome;
+        this.email = email;
+    }
+
     public Usuario(String nome, String cpf, String email, String senha) {
         this.nome = nome;
         this.cpf = cpf;

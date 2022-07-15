@@ -8,7 +8,6 @@ import java.io.IOException;
 public class MostraLogin implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Entrei");
         return "forward:telaLogin.jsp";
     }
 }

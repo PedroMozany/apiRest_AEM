@@ -7,54 +7,54 @@
 
 <body>
 <H1 style="text-align: center; margin-top: 30px;">Fazer cadastro</H1>
+
 <div class="container">
     <br>
     <form class="row align-items-center" action="Entrada?acao=Cadastro" method="post">
         <div class="col">
-            <label for="validationServer01" class="form-label">Nome:</label>
-            <input type="text" class="form-control" id="validationServer01" name="nome" required>
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="${google.nome}" required>
         </div>
         <br>
         <div class="col">
-            <label for="validationServer02" class="form-label">Cpf:</label>
-            <input type="text" class="form-control" id="validationServer02" name="cpf" required>
+            <label for="cpf" class="form-label">Cpf:</label>
+            <input type="text" class="form-control" id="cpf" name="cpf"  required>
         </div>
         <br>
         <div class="col">
-            <label for="validationServer03" class="form-label">Email:</label>
-            <input type="text" class="form-control" id="validationServer03" name="cep" required>
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" class="form-control" id="email" name="email" value="${google.email}" required>
         </div>
         <br>
         <div class="col">
-            <label for="validationServer07" class="form-label">Senha:</label>
-            <input type="password" class="form-control" id="validationServer07" name="senha" required>
+            <label for="senha" class="form-label">Senha:</label>
+            <input type="password" class="form-control" id="senha" name="senha" required>
         </div>
         <br>
+        <div style="padding-top: 20px" class="row">
+            <div class="col align-self-start">
+            </div>
+            <div class="col-1 align-self-center">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+            <div class="col align-self-end">
+            </div>
+        </div>
+        <div class="row">
+            <div style="margin-left: -20px" class="col-5 align-self-start">
+            </div>
+            <div class="col-3 align-self-center">
+                <form action="Entrada?acao=MostraLogin" method="post">
+                    <div style="margin-top: 30px;" class="col-12">
+                        <button style="width: 250px" type="submit" class="btn btn-primary">Voltar para página de login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col align-self-end">
+            </div>
+        </div>
     </form>
     <br>
-    <div class="row">
-        <div class="col align-self-start">
-        </div>
-        <div class="col-1 align-self-center">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </div>
-        <div class="col align-self-end">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col align-self-start">
-        </div>
-        <div class="col-3 align-self-center">
-            <form action="Entrada?acao=MostraLogin" method="post">
-                <div style="margin-top: 30px;" class="col-12">
-                    <button style="width: 250px" type="submit" class="btn btn-primary">Voltar para página de login</button>
-                </div>
-            </form>
-        </div>
-        <div class="col align-self-end">
-        </div>
-    </div>
 </div>
 </body>
 

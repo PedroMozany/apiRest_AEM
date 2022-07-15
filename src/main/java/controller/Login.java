@@ -17,17 +17,22 @@ public class Login implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
+     String email = request.getParameter("email");
+     String senha = request.getParameter("senha");
+
+
+
+
 
 
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-            Usuario Usuario = usuarioDAO.usuarioExiste(email, senha);
+            Usuario usuario = usuarioDAO.usuarioExiste(email, senha);
 
-            if (Usuario != null) {
+
+            if ( usuario != null ) {
                 HttpSession session = request.getSession();
-                session.setAttribute("logado", Usuario);
+                session.setAttribute("logado", usuario);
                 return "redirect:Entrada?acao=MostraVoos";
             } else {
                 return "forward:telaLogin.jsp";

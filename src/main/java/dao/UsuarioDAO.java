@@ -37,6 +37,26 @@ public class UsuarioDAO {
         }
     }
 
+    public Usuario usuarioExistePorEmail(String email) throws SQLException {
+        String sql = "SELECT * FROM redteam.usuario WHERE EMAIL = ?";
+        Usuario usuario;
+        try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+            pstm.setString(1, email);
+            pstm.execute();
+
+            try(ResultSet rst = pstm.getResultSet()){
+                if(rst.next()){
+                    return usuario = new Usuario(rst.getString(1), rst.getString(2),rst.getString(3),rst.getString(4));
+                } else {
+                    return usuario = null;
+                }
+            }
+        }
+    }
+
+
+
+
     public Usuario usuarioExiste(String email, String senha) throws SQLException {
         String sql = "SELECT * FROM redteam.usuario WHERE EMAIL = ? AND SENHA = ?";
         Usuario usuario;

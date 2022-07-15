@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebFilter(urlPatterns = "/Entrada")
 public class FilterController implements Filter {
@@ -29,7 +30,7 @@ public class FilterController implements Filter {
             Class classe = Class.forName(caminho);
             IAcao instance = (IAcao) classe.newInstance();
             nome = instance.acao(request, response);
-        }catch (ClassNotFoundException | InstantiationException | IllegalAccessException e){
+        }catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e){
             throw  new ServletException(e);
         }
 

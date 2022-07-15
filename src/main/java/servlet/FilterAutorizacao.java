@@ -25,7 +25,7 @@ public class FilterAutorizacao implements Filter {
         HttpSession session = request.getSession();
 
         boolean usuarioNaoEstaLogado = (session.getAttribute("logado") == null);
-        boolean acaoProtegida = !(paramAcao.equals("Login")|paramAcao.equals("MostraLogin")|paramAcao.equals("MostraCadastro"));
+        boolean acaoProtegida = !(paramAcao.equals("Login")|paramAcao.equals("MostraLogin")|paramAcao.equals("MostraCadastro") | paramAcao.equals("LoginGoogle") | paramAcao.equals("Cadastro") );
 
         if(usuarioNaoEstaLogado && acaoProtegida){
             response.sendRedirect("Entrada?acao=Login");

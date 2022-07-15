@@ -23,16 +23,17 @@
         <div style="padding-left: 120px" class="col-5">
             <div id="g_id_onload"
                  data-client_id="1018281432326-e4sdi7eikd89vf17bhivcce3hskbujns.apps.googleusercontent.com"
-                 data-login_uri="https://localhost:8080"
+                 data-login_uri="CompanhiaAerea_war_exploded/Entrada?acao=LoginGoogle"
                  data-auto_prompt="false">
             </div>
             <div class="g_id_signin"
                  data-type="standard"
                  data-size="large"
-                 data-theme="outline"
-                 data-text="sign_in_with"
+                 data-theme="filled_blue"
+                 data-text="$ {button.text}"
                  data-shape="rectangular"
-                 data-logo_alignment="left">
+                 data-logo_alignment="left"
+                 data-width="150px">
             </div>
         </div>
     </form>

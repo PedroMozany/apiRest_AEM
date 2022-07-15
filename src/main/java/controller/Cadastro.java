@@ -15,6 +15,7 @@ public class Cadastro implements IAcao{
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
@@ -23,8 +24,9 @@ public class Cadastro implements IAcao{
 
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-            Usuario Usuario = new Usuario(nome, cpf, email, senha);
-            usuarioDAO.incluir(Usuario);
+            Usuario usuario = new Usuario(nome, cpf, email, senha);
+            System.out.println(usuario);
+            usuarioDAO.incluir(usuario);
             return "redirect:Entrada?acao=MostraLogin";
 
         } catch (SQLException | ClassNotFoundException e) {
