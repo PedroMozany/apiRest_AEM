@@ -40,20 +40,22 @@
             <div class="col align-self-end">
             </div>
         </div>
-        <div class="row">
-            <div style="margin-left: -20px" class="col-5 align-self-start">
-            </div>
-            <div class="col-3 align-self-center">
-                <form action="Entrada?acao=MostraLogin" method="post">
-                    <div style="margin-top: 30px;" class="col-12">
-                        <button style="width: 250px" type="submit" class="btn btn-primary">Voltar para página de login</button>
-                    </div>
-                </form>
-            </div>
-            <div class="col align-self-end">
-            </div>
-        </div>
     </form>
+
+    <div class="row">
+        <div style="margin-left: -20px" class="col-5 align-self-start">
+        </div>
+        <div class="col-3 align-self-center">
+            <form action="Entrada?acao=MostraLogin" method="post">
+                 <div style="margin-top: 30px;" class="col-12">
+                        <button style="width: 250px" type="submit" class="btn btn-primary">Voltar para página de login</button>
+                 </div>
+            </form>
+        </div>
+        <div class="col align-self-end">
+        </div>
+    </div>
+
     <br>
 </div>
 </body>
