@@ -17,12 +17,9 @@ public class Login implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
      String email = request.getParameter("email");
      String senha = request.getParameter("senha");
-
-
-
-
 
 
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
@@ -30,7 +27,7 @@ public class Login implements IAcao {
             Usuario usuario = usuarioDAO.usuarioExiste(email, senha);
 
 
-            if ( usuario != null ) {
+            if (usuario != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("logado", usuario);
                 return "redirect:Entrada?acao=MostraVoos";

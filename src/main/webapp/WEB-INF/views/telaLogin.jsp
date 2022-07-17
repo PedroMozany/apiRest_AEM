@@ -12,10 +12,10 @@
 <div style="padding-top:100px; padding-left: 475px ">
     <form action="Entrada?acao=Login" method="post" class="row g-3">
         <div class="col-3">
-            <input type="email" class="form-control"  name="email" placeholder="Email" required >
+            <input type="email" class="form-control"  name="email" value="${validar.email}"  placeholder="Email" required >
         </div>
         <div class="col-3">
-            <input type="password" class="form-control" name="senha" placeholder="Senha" required>
+            <input type="password" class="form-control" name="senha" value="${validar.senha}" placeholder="Senha" required>
         </div>
         <div style="padding-left: 150px" class="col-12">
             <button style="width: 200px" type="submit" class="btn btn-primary">Fazer Login</button>

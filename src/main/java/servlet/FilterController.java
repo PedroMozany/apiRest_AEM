@@ -18,8 +18,10 @@ public class FilterController implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws ServletException, IOException {
         System.out.println("Controler");
 
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+
 
 
         String paramAcao = request.getParameter("acao");
@@ -36,9 +38,10 @@ public class FilterController implements Filter {
 
         String[] redirecionamento = nome.split(":");
 
+
         if (redirecionamento[0].equals("forward")) {
             request.getRequestDispatcher("WEB-INF/views/" + redirecionamento[1]).forward(request, response);
-        } else {
+        }else {
             response.sendRedirect(redirecionamento[1]);
         }
     }

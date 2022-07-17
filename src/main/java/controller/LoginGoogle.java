@@ -17,31 +17,27 @@ import java.sql.SQLException;
 public class LoginGoogle implements IAcao {
 
 
-
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String token = request.getParameter("credential");
         Usuario usuario = ApiGoogle.validarToken(token);
 
 
-        try(Connection connection = new ConectionFactory().recuperarConexao()){
+        try (Connection connection = new ConectionFactory().recuperarConexao()) {
             UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
             Usuario autenticar = usuarioDAO.usuarioExistePorEmail(usuario.getEmail());
-            if(autenticar == null){
+
+            if (autenticar == null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("google", usuario);
                 return "redirect:Entrada?acao=MostraCadastro";
-            }else{
+            } else {
                 HttpSession session = request.getSession();
-                session.setAttribute("usuario", autenticar);
-                return "redirect:Entrada?acao=Login";
+                session.setAttribute("validar", autenticar);
+               return "redirect:Entrada?acao=MostraLogin";
             }
         }
-
     }
-
-
-
 
 
 }
