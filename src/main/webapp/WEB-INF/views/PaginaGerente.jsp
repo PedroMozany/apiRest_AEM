@@ -8,51 +8,58 @@
 </head>
 <body>
 <h1 style="text-align: center; margin-top: 15px;">
-  Red Area Restrita
+    Red Area Restrita
 </h1>
 <h4 style="text-align: center; margin-top: 15px;">
-  Voos disponiveis
+    Voos disponiveis
 </h4>
 <div  style="padding-top:15px; text-align: center;">
-  <form action="Entrada?acao=MostraVoos" method="post">
-  <button type="button" class="btn btn-success">Adicionar Voo</button>
-  </form>
+    <form action="Entrada?acao=MostraFormVoo" method="post">
+        <button type="submit" class="btn btn-success">Adicionar Voo</button>
+    </form>
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
-    
+
     <form method="post" class="row g-6">
-    <table class="table table-striped-columns table-hover table-sm align-middle">
-      <thead>
-        <tr class="table-dark">
-          <th scope="col">Numero do Voo</th>
-          <th scope="col">Data</th>
-          <th scope="col">Origem</th>
-          <th scope="col">Destino</th>
-          <th scope="col">Duração</th>
-          <th scope="col">Preço</th>
-          <th scope="col">N. De Assentos</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody >
-        <c:forEach items="${lista}" var="voo">
-          <tr class="table-light">
-            <th scope="row">${voo.numeroVoo}</th>
-            <td>${voo.data}</td>
-            <td>${voo.origem}</td>
-            <td>${voo.destino}</td>
-            <td>${voo.duracaoVoo}</td>
-            <td>${voo.preco}</td>
-            <td>${voo.numeroAssentos}</td>
-            <td>
-              <button type="button" class="btn btn-danger" action="Entrada?acao=CancelarVOOgerente">Cancelar</button>
-              <button type="button" class="btn btn-warning" action="Entrada?acao=AlterarVoo">Alterar</button>
-            </td>
-          </tr>
-      </c:forEach>
-      </tbody>
-    </table>
+        <table class="table table-striped-columns table-hover table-sm align-middle">
+            <thead>
+            <tr class="table-dark">
+                <th scope="col">Numero do Voo</th>
+                <th scope="col">Data</th>
+                <th scope="col">Origem</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Duração</th>
+                <th scope="col">Preço</th>
+                <th scope="col">N. De Assentos</th>
+                <th scope="col">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${lista}" var="voo">
+                <tr class="table-light">
+                    <td>${voo.nmrDoVoo}</td>
+                    <td>${voo.data}</td>
+                    <td>${voo.origem.cidade}</td>
+                    <td>${voo.destino.cidade}</td>
+                    <td>${voo.duracaoVoo}</td>
+                    <td>${voo.precoForm}</td>
+                    <td>${voo.numeroAssentos}</td>
+                    <td>
+                        <form action="Entrada?acao=AcoesGerente" method="post">
+                            <input type="hidden" name="cancelar" value="${voo.nmrDoVoo}">
+                            <button style="width: 100px" type="submit" class="btn btn-danger">CANCELAR</button>
+                        </form>
+                        <form action="Entrada?acao=MostraAlterarVoo" method="post">
+                            <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
+                            <button style="width: 100px" type="submit" class="btn btn-warning">ALTERAR</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </form>
-  </div>
+</div>
 </body>
 </html>
+

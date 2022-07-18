@@ -15,14 +15,14 @@ import java.io.IOException;
 public class ApiDistancia {
     private String tempo;
     public ApiDistancia(String destino, String origem) throws ResponseProcessingException, IOException {
-      this.tempo =  String.format("%.2f", duracao(destino, origem));
+      this.tempo = String.format("%.2f", duracao(destino, origem));
     }
 
 
-    public double duracao(String nome1, String nome2) throws IOException, ResponseProcessingException {
+    public double duracao(String destino, String origem) throws IOException, ResponseProcessingException {
 
-        String origem = nome1.replace(" ", "%20");
-        String destino = nome2.replace(" ", "%20");
+
+
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
@@ -30,6 +30,7 @@ public class ApiDistancia {
                 .url("https://maps.googleapis.com/maps/api/distancematrix/json?destinations=" + destino + "&origins=" + origem + "&key=AIzaSyADtQO0uGoCiAh7836gxFNbO_kavmwifiQ")
                 .get()
                 .build();
+
 
         Response response = client.newCall(request).execute();
         String data = response.body().string();
@@ -43,6 +44,7 @@ public class ApiDistancia {
         return (Double.parseDouble(valor.get("value").getAsString()) / 330) / 60;
 
     }
+
 
     public String getTempo() {
         return tempo;

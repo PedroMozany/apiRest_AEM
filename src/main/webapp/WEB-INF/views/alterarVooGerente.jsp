@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Atropall
-  Date: 15/07/2022
-  Time: 11:17
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -14,52 +7,65 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
 </head>
-
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
 <body>
 
-<form action="entrada?action=alterarVoo">
+<form action="Entrada?acao=AcoesGerente" method="post">
 
     <div class="container" style="width: 400px">
-        <h5 style="margin-left: 30px">Alterando voo : numero do voo </h5>
+        <h5 style="margin-left: 30px">Alterando voo : ${voos.nmrDoVoo}</h5>
+        <input type="hidden" name="alterar" value="${voos.nmrDoVoo}">
         <br>
 
         <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">preco inicial PH</span>
+            <div>
+                <span class="input-group-text">preco inicial PH</span>
             </div>
-            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-
+            <input type="text" class="form-control" aria-label="Username" name="preco" value="${voos.preco} ">
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Origem PH</span>
+                <span class="input-group-text">Origem PH</span>
             </div>
-            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-
+            <input type="text" class="form-control" aria-label="Username" name="origem" value="${voos.origem.codigo}">
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Destino PH</span>
+                <span class="input-group-text">Destino PH</span>
             </div>
-            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-
+            <input type="text" class="form-control" aria-label="Username" name="destino" value="${voos.destino.codigo}">
         </div>
 
         <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Duracao PH</span>
+            <div>
+                <span class="input-group-text">Duracao PH</span>
             </div>
-            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" aria-label="Username" name="duracaoVoo" value="${voos.duracaoVoo}">
 
         </div>
+        <div class="input-group mb-3">
+            <div>
+                <span class="input-group-text">Data</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Username" name="data" value="${voos.data}">
 
+        </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Numero de Assentos PH</span>
             </div>
-            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" aria-label="Username" name="assento" value="${voos.numeroAssentos}">
 
         </div>
 
@@ -67,19 +73,13 @@
 
             <h4 style="padding: 30px" >Confirme seus dados agora</h4>
             <div class="col-md">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
+                <input type="number" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-sm" placeholder="Matricula">
             </div>
 
             <div class="col-md">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Senha</span>
-                </div>
                 <input type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
+                       aria-describedby="inputGroup-sizing-sm" placeholder="Senha">
             </div>
 
         </div>

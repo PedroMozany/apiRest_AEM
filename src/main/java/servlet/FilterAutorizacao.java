@@ -1,5 +1,7 @@
 package servlet;
 
+import model.Usuario;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,8 @@ public class FilterAutorizacao implements Filter {
 
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {}
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
@@ -21,20 +24,32 @@ public class FilterAutorizacao implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
+
         String paramAcao = request.getParameter("acao");
         HttpSession session = request.getSession();
 
+        Usuario nome = (Usuario) session.getAttribute("logado");
+
+
         boolean usuarioNaoEstaLogado = (session.getAttribute("logado") == null);
-        boolean acaoProtegida = !(paramAcao.equals("LoginGoogle")|paramAcao.equals("Login")|paramAcao.equals("MostraLogin")|paramAcao.equals("MostraCadastro") | paramAcao.equals("Cadastro") );
+        boolean acaoProtegida = !(paramAcao.equals("LoginGoogle") | paramAcao.equals("Login") | paramAcao.equals("MostraLogin") | paramAcao.equals("MostraCadastro") | paramAcao.equals("Cadastro") | paramAcao.equals("MostraLoginG"));
+        boolean acaoProtegidaUsuario = (paramAcao.equals("MostraLoginG"));
 
-
-        if(usuarioNaoEstaLogado && acaoProtegida){
+        if(nome != null){
+            if(nome.getTipo() == "USUARIO" && acaoProtegidaUsuario){
+                response.sendRedirect("Entrada?acao=Erro");
+                return;
+            }
+        }else  if (usuarioNaoEstaLogado && acaoProtegida) {
             response.sendRedirect("Entrada?acao=Login");
             return;
         }
+
+
         chain.doFilter(request, response);
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

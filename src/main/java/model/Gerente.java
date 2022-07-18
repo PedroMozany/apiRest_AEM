@@ -4,7 +4,7 @@ public class Gerente extends Usuario {
     private int matricula;
 
     public Gerente(String nome, String cpf, String email, String senha, int matricula) {
-        super(nome, cpf, email, senha);
+        super(nome, cpf, email, senha,"GERENTE");
         this.matricula = matricula;
     }
 
@@ -14,7 +14,7 @@ public class Gerente extends Usuario {
 
     @Override
     public String toString() {
-        return super.toString() +
+        return super.toString() + "\n" +
         "matricula: " + matricula;
     }
 }

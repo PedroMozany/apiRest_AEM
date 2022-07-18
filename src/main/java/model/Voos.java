@@ -8,31 +8,32 @@ import java.util.Date;
 public class Voos {
     private int nmrDoVoo;
     private Date data;
-    private float preco;
+    private Double preco;
     private Aeroporto origem;
     private Aeroporto destino;
-    private double duracaoVoo;
+    private String duracaoVoo;
     private int numeroAssentos;
+    private  String precoForm;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 
-    public Voos(String data, float preco, Aeroporto origem, Aeroporto destino,int minutos, int numeroAssentos) throws ParseException {
+    public Voos(String data, double preco, Aeroporto origem, Aeroporto destino,String duracaoVoo, int numeroAssentos) throws ParseException {
         this.data =  sdf.parse(data);
         this.preco = preco;
         this.origem = origem;
         this.destino = destino;
-        this.duracaoVoo = calcDuracao(minutos);
+        this.duracaoVoo = duracaoVoo;
         this.numeroAssentos = numeroAssentos;
     }
 
 
-    public Voos(int nmrDoVoo, String data, float preco, String origem, String destino,int minutos, int numeroAssentos) throws ParseException {
+    public Voos(int nmrDoVoo, String data, double preco, String origem, String destino,String duracaoVoo, int numeroAssentos) throws ParseException {
         this.nmrDoVoo = nmrDoVoo;
         this.data = sdf.parse(data);
         this.preco = preco;
         this.origem = Aeroporto.valueOf(origem);
         this.destino = Aeroporto.valueOf(destino);
-        this.duracaoVoo = calcDuracao(minutos);
+        this.duracaoVoo = duracaoVoo;
         this.numeroAssentos = numeroAssentos;
     }
 
@@ -41,8 +42,14 @@ public class Voos {
         return sdf.format(this.data);
     }
 
-    public float getPreco() {
+    public Double getPreco() {
         return preco;
+    }
+
+
+    public String getPrecoForm() {
+        this.precoForm = String.format("%.2f",this.preco);
+        return precoForm;
     }
 
     public Aeroporto getOrigem() {
@@ -53,7 +60,7 @@ public class Voos {
         return destino;
     }
 
-    public double getDuracaoVoo() {
+    public String getDuracaoVoo() {
         return duracaoVoo;
     }
 
@@ -66,20 +73,10 @@ public class Voos {
     }
 
 
-    public double calcDuracao(int minutos){
-        this.duracaoVoo = minutos / 60;
-        return this.duracaoVoo;
-    }
-
-    public void getDuracao(){
-        //calcular a distancia com a API de localização.
-    }
-
-
     public String toString() {
         return "Numero do Voo: " + nmrDoVoo + "\n" +
                 "Data: " + sdf.format(data) + "\n" +
-                "Preço: " +"R$" + preco + "\n" +
+                "Preço: " +"R$ " + String.format("%.2f",preco) + "\n" +
                 "Origem: " + origem + "\n" +
                 "Destino: " + destino + "\n" +
                 "Duração do Voo: " + duracaoVoo +"h";

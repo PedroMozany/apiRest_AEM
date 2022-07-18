@@ -56,22 +56,4 @@ public class Companhia {
         return reserva.getVoo().getPreco() - desconto(idReserva);
     }
 
-    /// obrigação do Gerente fazer
-//    public List<Voos> getVoos() {
-//        //chamar dao de select * from voos;
-//        return null;
-//    }
-//
-//
-//    public void deletarVoo(int nmrVoo) {
-//        //chamar dao de delete do voo
-//    }
-//
-//    public void criarVoo() {
-//        //chamar o jps de criar voo e dps chamar o dao de inserir
-//    }
-//
-//    public void atualizarVoo() {
-//        //chamar a jsp de uptade e dps chamar a dao de uptade
-//    }
 }

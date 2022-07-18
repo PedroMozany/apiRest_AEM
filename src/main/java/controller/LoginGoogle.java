@@ -33,8 +33,8 @@ public class LoginGoogle implements IAcao {
                 return "redirect:Entrada?acao=MostraCadastro";
             } else {
                 HttpSession session = request.getSession();
-                session.setAttribute("validar", autenticar);
-               return "redirect:Entrada?acao=MostraLogin";
+                session.setAttribute("google", autenticar);
+               return "redirect:Entrada?acao=Login";
             }
         }
     }

@@ -1,81 +1,74 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Atropall
-  Date: 13/07/2022
-  Time: 13:51
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>criando voo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
-<body>
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<body>
 <div class="container">
+    <h1 style="text-align: center">REGISTRO DE VOOS</h1>
     <div class="row align-items-center">
         <div class="col align-self-start">
         </div>
-        <div class="col align-self-center">
-            <div class="container" style=" text-align: center"  >
-                <form style="width: 400px" action="MUDAR AQUI, COLOCAR A ACTION PARA FUNCIONAR CERTINHO" method="post">
-                    <div class="row " >
-
-
-                        <div class="col align-self-center" >
-
+        <div style="padding-top: 80px" class="col align-self-center">
+            <div  class="container" style=" text-align: center">
+                <form style="width: 400px" action="Entrada?acao=AcoesGerente" method="post">
+                    <div class="row ">
+                        <div class="col align-self-center">
                             <div>
-                                <label for="destino" class="form-label">Data do voo</label>
-                                <input type="date" class="form-control" id="destino" aria-describedby="destinoVoo" required >
+                                <label class="form-label">Data do voo</label>
+                                <input type="date" class="form-control" name="data" required>
                             </div>
-                            <div >
-                                <label for="precoVoo" class="form-label">Preço</label>
-                                <input type="number"  class="form-control" id="precoVoo" required>
+                            <div>
+                                <label class="form-label">Preço</label>
+                                <input type="number" class="form-control" name="preco" step=".01" required>
                             </div>
-
-                            <div >
-                                <label for="origem" class="form-label">Origem</label>
-                                <select id="origem">
-                                    <option value="teste A">teste A-O</option>
-                                    <option value="teste B">teste B-O</option>
-                                    <option value="teste C">teste C-O</option>
+                            <div>
+                                <label class="form-label">Origem</label>
+                                <select name="origem">
+                                    <c:forEach items="${aeroportos}" var="aeroporto">
+                                        <option  value="${aeroporto.codigo}">${aeroporto.cidade}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
-                            <div >
-                                <label for="destinoVoo" class="form-label">Destino</label>
-                                <select id="destinoVoo">
-                                    <option value="teste A">teste A-D</option>
-                                    <option value="teste B">teste B-D</option>
-                                    <option value="teste C">teste C-D</option>
+                            <div>
+                                <label class="form-label">Destino</label>
+                                <select name="destino">
+                                    <c:forEach items="${aeroportos}" var="aeroporto">
+                                        <option  value="${aeroporto.codigo}">${aeroporto.cidade}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
-                            <div  >
-                                <label for="duracaoVoo" class="form-label">Duracao</label>
-                                <input type="time"  class="form-control" id="duracaoVoo" required>
-                            </div>
-                            <div >
-                                <label for="numeroAssentos" class="form-label">Numero de Assentos</label>
-
-                                <select id="numeroAssentos">
-                                    <option value="100">100</option>
-                                    <option value="180">180</option>
-                                    <option value="220">220</option>
+                            <div>
+                                <label  class="form-label">Numero de Assentos</label><br>
+                                <select name="assento">
+                                    <option  value="300">300</option>
+                                    <option  value="489">489</option>
+                                    <option  value="747">747</option>
                                 </select>
                             </div>
-
                         </div>
-
                     </div>
-
-
-                    <button type="submit" class="btn btn-primary" >Cadastrar</button>
+                    <input type="hidden" value="criar" name="criar">
+                    <div style="padding-top: 20px">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
                 </form>
-
-
             </div>
-
         </div>
         <div class="col align-self-end">
         </div>

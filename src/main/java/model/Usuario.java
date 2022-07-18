@@ -5,6 +5,7 @@ public class Usuario {
     protected String cpf;
     protected String email;
     protected String senha;
+    protected  String tipo;
 
     public Usuario() {
 
@@ -13,6 +14,7 @@ public class Usuario {
     public Usuario(String nome, String email) {
         this.nome = nome;
         this.email = email;
+        this.tipo = "USUARIO";
     }
 
     public Usuario(String nome, String cpf, String email, String senha) {
@@ -20,6 +22,15 @@ public class Usuario {
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
+        this.tipo = "USUARIO";
+    }
+
+    public Usuario(String nome, String cpf, String email, String senha,String tipo) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
+        this.tipo = tipo;
     }
 
 
@@ -27,30 +38,19 @@ public class Usuario {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+    public String getTipo() {return tipo;}
 
     @Override
     public String toString() {
