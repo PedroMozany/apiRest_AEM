@@ -2,14 +2,12 @@ package dao;
 
 import model.Reserva;
 import model.Usuario;
-import model.Voos;
 import scala.util.Try;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,19 +28,19 @@ public class ReservaDao {
         }
     }
 
-    public List<Voos> buscarVoos(String cpf) throws SQLException, ParseException {
-        String query = "select * from voos right join(select numeroreserva, voo, usuario from reserva where usuario = ?)reserva on nmrVoo = reserva.voo";
+    public Usuario buscarUsuario(String cpf) throws SQLException {
+        String query = "select nome, cpf, email, senha from usuario right join(select numeroreserva, voo, usuario from reserva where usuario = ?)reserva on cpf = reserva.usuario";
 
-        List<Voos> passagensCompradas = new LinkedList<>();
+        Usuario usuario;
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, cpf);
             pst.execute();
             try (ResultSet rst = pst.getResultSet()) {
-                while (rst.next()) {
-                    Voos voo = new Voos(rst.getInt(1), rst.getString(2), rst.getFloat(3), rst.getString(4), rst.getString(5), rst.getString(6), rst.getInt(7));
-                    passagensCompradas.add(voo);
+                if (rst.next()) {
+                    return usuario = new Usuario(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4));
+                } else {
+                    return null;
                 }
-                return passagensCompradas;
             }
         }
     }
@@ -63,10 +61,10 @@ public class ReservaDao {
         }
     }
 
-    public void cancelarReserva(String idReserva) throws SQLException {
-        String query = "DELETE FROM reserva WHERE NUMERORESERVA = ?";
+    public void cancelarReserva(String cpf) throws SQLException {
+        String query = "DELETE FROM reserva WHERE USUARIO = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setString(1, idReserva);
+            pst.setString(1, cpf);
             pst.execute();
         }
     }
