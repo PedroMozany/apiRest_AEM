@@ -26,9 +26,6 @@ public class Login implements IAcao {
 
         Usuario google = (Usuario) session.getAttribute("google");
 
-
-
-
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
             GerenteDAO gerenteDAO = new GerenteDAO(connection);
