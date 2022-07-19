@@ -16,46 +16,46 @@
 </h3>
 <div  style="text-align: center;">
   <form action="Entrada?acao=MostraPerfil" method="post">
-  <h5>${logado.nome}</h5>
+    <h5>${logado.nome}</h5>
     <button type="submit" class="btn btn-info">Perfil do Usuario</button>
   </form>
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
 
-    <table class="table table-striped-columns table-hover table-sm align-middle">
-      <thead>
-      <tr class="table-dark">
-        <th scope="col">Data</th>
-        <th scope="col">Origem</th>
-        <th scope="col">Destino</th>
-        <th scope="col">Duração</th>
-        <th scope="col">Preço</th>
-        <th scope="col">Ações</th>
-      </tr>
-      </thead>
-      <tbody >
-      <c:forEach items="${lista}" var="voo">
-        <tr class="table-light">
-          <td>${voo.data}</td>
-          <td>${voo.origem.cidade}</td>
-          <td>
-            <form action="Entrada?acao=CalcularClima" method="post" style="text-align: center; margin-top:9%;">
-              <input type="hidden" name="cidade" value="${voo.destino.cidade}">
-              <button type="submit" class="btn btn-link">${voo.destino.cidade}</button>
-            </form>
-          </td>
-          <td>${voo.duracaoVoo}</td>
-          <td>${voo.precoForm}</td>
-          <form action="Entrada?acao=MostrarPaginaCompra" method="post">
-            <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
-            <input type="hidden" name="cpf" value="${logado.cpf}">
-            <input type="hidden" name="email" value="${logado.email}">
-            <td><button type="submit" class="btn btn-success">Comprar</button></td>
+  <table class="table table-striped-columns table-hover table-sm align-middle table-responsive">
+    <thead>
+    <tr class="table-dark">
+      <th scope="col">Data</th>
+      <th scope="col">Origem</th>
+      <th scope="col">Destino</th>
+      <th scope="col">Duração</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Ações</th>
+    </tr>
+    </thead>
+    <tbody >
+    <c:forEach items="${lista}" var="voo">
+      <tr class="table-light">
+        <td>${voo.data}</td>
+        <td>${voo.origem.cidade}</td>
+        <td>
+          <form action="Entrada?acao=CalcularClima" method="post" style="margin-top: 5%;">
+            <input type="hidden" name="cidade" value="${voo.destino.cidade}">
+            <button type="submit" class="btn btn-link">${voo.destino.cidade}</button>
           </form>
-        </tr>
-      </c:forEach>
-      </tbody>
-    </table>
+        </td>
+        <td>${voo.duracaoVoo}</td>
+        <td>${voo.precoForm}</td>
+        <form action="Entrada?acao=MostrarPaginaCompra" method="post">
+          <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
+          <input type="hidden" name="cpf" value="${logado.cpf}">
+          <input type="hidden" name="email" value="${logado.email}">
+          <td><button type="submit" class="btn btn-success">Comprar</button></td>
+        </form>
+      </tr>
+    </c:forEach>
+    </tbody>
+  </table>
 </div>
 </body>
 </html>
