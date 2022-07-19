@@ -1,6 +1,9 @@
 package controller;
 
+import dao.ReservaDao;
 import dao.VooDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Aeroporto;
 import model.Voos;
@@ -16,7 +19,7 @@ import java.text.ParseException;
 
 public class AcoesGerente implements IAcao {
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
         System.out.println("AcoesGerente");
 
         String data = request.getParameter("data");
@@ -26,6 +29,8 @@ public class AcoesGerente implements IAcao {
         String assentos = request.getParameter("assento");
         String duracacao = request.getParameter("duracaoVoo");
 
+
+        System.out.println();
 
         String criar = request.getParameter("criar");
         String cancelar = request.getParameter("cancelar");
@@ -49,7 +54,7 @@ public class AcoesGerente implements IAcao {
     }
 
 
-    public void criarVoo(String data, String origem, String destino, String preco, String assentos) throws SQLException, ClassNotFoundException, IOException, ParseException {
+    public void criarVoo(String data, String origem, String destino, String preco, String assentos) throws SQLException, ClassNotFoundException, IOException, ParseException, ColecaoException, ConexaoException {
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             VooDAO vooDAO = new VooDAO(connection);
             String dataFormat = data.replace("-", "/");
@@ -62,15 +67,18 @@ public class AcoesGerente implements IAcao {
     }
 
 
-    public void cancelar(String numVoo) throws SQLException, ClassNotFoundException, IOException, ParseException {
+    public void cancelar(String numVoo) throws SQLException, ClassNotFoundException, ColecaoException, ConexaoException {
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
+            ReservaDao reservaDao = new ReservaDao(connection);
+            reservaDao.cancelarVoo(numVoo);
             VooDAO vooDAO = new VooDAO(connection);
+            System.out.println("cancelar Entrei");
             vooDAO.deletarVoo(Integer.parseInt(numVoo));
         }
     }
 
 
-    public void alterarVoo(String numVoo, String data, String origem, String destino, String preco, String assentos, String duracacao) throws SQLException, ClassNotFoundException, IOException, ParseException {
+    public void alterarVoo(String numVoo, String data, String origem, String destino, String preco, String assentos, String duracacao) throws SQLException, ClassNotFoundException, IOException, ParseException, ColecaoException, ConexaoException {
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             VooDAO vooDAO = new VooDAO(connection);
             String dataFormat = data.replace("-", "/");

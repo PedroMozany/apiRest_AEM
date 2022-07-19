@@ -1,5 +1,6 @@
 package dao;
 
+import exception.ColecaoException;
 import model.Voos;
 
 import java.sql.*;
@@ -15,7 +16,7 @@ public class VooDAO {
         this.connection = connection;
     }
 
-    public void criarVOO(Voos voo) {
+    public void criarVOO(Voos voo) throws ColecaoException {
         String sql = "INSERT INTO voos (NMRVOO, DATA, PRECO, ORIGEM, DESTINO, DURACAOVOO, NUMEROASSENTOS) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -27,22 +28,23 @@ public class VooDAO {
             pstm.setString(6, voo.getDuracaoVoo());
             pstm.setInt(7, voo.getNumeroAssentos());
             pstm.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e){
+            throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
         }
 
     }
 
-    public void deletarVoo(int nmrVoo) {
+    public void deletarVoo(int nmrVoo) throws ColecaoException {
         try (PreparedStatement stm = connection.prepareStatement("DELETE FROM voos WHERE NMRVOO = ?")) {
             stm.setInt(1, nmrVoo);
+            System.out.println("Entrei sql");
             stm.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e){
+            throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
         }
     }
 
-    public Voos buscarVoo(String nmrVoo) throws ParseException {
+    public Voos buscarVoo(String nmrVoo) throws ParseException,ColecaoException {
         String query = "SELECT * FROM voos WHERE NMRVOO = ?";
 
         try (PreparedStatement stm = connection.prepareStatement(query)) {
@@ -55,14 +57,16 @@ public class VooDAO {
                 } else {
                     return null;
                 }
+            }catch (SQLException e){
+                throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e){
+            throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
         }
     }
 
 
-    public List<Voos> getVoos() throws ParseException {
+    public List<Voos> getVoos() throws ParseException,ColecaoException {
         List<Voos> voos = new LinkedList<>();
         try {
             String sql = "SELECT * FROM voos";
@@ -75,15 +79,17 @@ public class VooDAO {
                         Voos voo = new Voos(rst.getInt(1), rst.getString(2), rst.getFloat(3), rst.getString(4), rst.getString(5), rst.getString(6), rst.getInt(7));
                         voos.add(voo);
                     }
+                }catch (SQLException e){
+                    throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
                 }
             }
             return voos;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e){
+            throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
         }
     }
 
-    public void atualizarVoo(Voos voo) {
+    public void atualizarVoo(Voos voo) throws SQLException,ColecaoException {
         try (PreparedStatement stm = connection
                 .prepareStatement("UPDATE voos P SET P.DATA = ?, P.PRECO = ?, P.ORIGEM = ?, P.DESTINO = ?, P.DURACAOVOO = ?, P.NUMEROASSENTOS = ? WHERE NMRVOO = ?")) {
 
@@ -96,8 +102,8 @@ public class VooDAO {
             stm.setInt(7, voo.getNmrDoVoo());
             stm.execute();
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e){
+            throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
         }
     }
 

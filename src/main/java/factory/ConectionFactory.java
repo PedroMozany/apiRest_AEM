@@ -1,6 +1,7 @@
 package factory;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import exception.ConexaoException;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -18,8 +19,13 @@ public class ConectionFactory {
         this.dataSource = comboPooledDataSource;
     }
 
-    public Connection recuperarConexao() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        return this.dataSource.getConnection();
+    public Connection recuperarConexao()  throws SQLException, ClassNotFoundException, ConexaoException {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return this.dataSource.getConnection();
+        }catch (SQLException e) {
+            throw new ConexaoException("Erro ao fechar a conexão" + e);
+        }
+
     }
 }

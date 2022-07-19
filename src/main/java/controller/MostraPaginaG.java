@@ -1,6 +1,8 @@
 package controller;
 
 import dao.VooDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Aeroporto;
 import model.Voos;
@@ -17,7 +19,7 @@ import java.util.List;
 
 public class MostraPaginaG implements IAcao {
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
         System.out.println("MostraPaginaG");
 
         List<Voos> list;

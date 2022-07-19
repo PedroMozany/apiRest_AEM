@@ -1,6 +1,8 @@
 package controller;
 
 import dao.VooDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Voos;
 
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class MostraVoos implements IAcao {
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
 
         List<Voos> lista;
         try (Connection connection = new ConectionFactory().recuperarConexao()) {

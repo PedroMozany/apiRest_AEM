@@ -1,5 +1,6 @@
 package dao;
 
+import exception.ColecaoException;
 import model.Gerente;
 
 import java.sql.*;
@@ -12,7 +13,7 @@ public class GerenteDAO {
         this.connection = connection;
     }
 
-    public Gerente gerenteExiste(String matricula, String senha) throws SQLException {
+    public Gerente gerenteExiste(String matricula, String senha) throws SQLException, ColecaoException {
         String sql = "SELECT * FROM redteam.gerente WHERE MATRICULA = ? AND SENHA = ?";
 
 
@@ -26,7 +27,11 @@ public class GerenteDAO {
                 } else {
                     return null;
                 }
+            }catch (SQLException e){
+                throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
             }
+        }catch (SQLException e){
+            throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
         }
     }
 

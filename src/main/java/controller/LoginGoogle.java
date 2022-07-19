@@ -2,6 +2,8 @@ package controller;
 
 
 import dao.UsuarioDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Usuario;
 import util.ApiGoogle;
@@ -18,10 +20,11 @@ public class LoginGoogle implements IAcao {
 
 
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ColecaoException, ConexaoException {
         String token = request.getParameter("credential");
         Usuario usuario = ApiGoogle.validarToken(token);
 
+        System.out.println(token);
 
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             UsuarioDAO usuarioDAO = new UsuarioDAO(connection);

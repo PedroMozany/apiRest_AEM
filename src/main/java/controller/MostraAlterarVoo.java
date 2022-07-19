@@ -1,6 +1,8 @@
 package controller;
 
 import dao.VooDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Aeroporto;
 import model.Voos;
@@ -18,7 +20,7 @@ import java.util.List;
 
 public class MostraAlterarVoo implements IAcao {
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
         String numVoo = request.getParameter("numVoo");
         List<Aeroporto> list = Arrays.asList(Aeroporto.values());
 

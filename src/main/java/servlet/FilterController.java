@@ -1,6 +1,8 @@
 package servlet;
 
 import controller.IAcao;
+import exception.ColecaoException;
+import exception.ConexaoException;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -23,7 +25,8 @@ public class FilterController implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-
+        int status = response.getStatus();
+        System.out.println(status);
 
         String paramAcao = request.getParameter("acao");
         String caminho = "controller." + paramAcao;
@@ -33,7 +36,8 @@ public class FilterController implements Filter {
             Class classe = Class.forName(caminho);
             IAcao instance = (IAcao) classe.newInstance();
             nome = instance.acao(request, response);
-        }catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException | ParseException e){
+        }catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException |
+                ParseException | ColecaoException | ConexaoException e){
             throw  new ServletException(e);
         }
 
