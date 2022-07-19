@@ -37,6 +37,7 @@ public class VooDAO {
     public void deletarVoo(int nmrVoo) throws ColecaoException {
         try (PreparedStatement stm = connection.prepareStatement("DELETE FROM voos WHERE NMRVOO = ?")) {
             stm.setInt(1, nmrVoo);
+            System.out.println("Entrei sql");
             stm.execute();
         } catch (SQLException e){
             throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);

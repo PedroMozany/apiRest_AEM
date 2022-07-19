@@ -1,5 +1,6 @@
 package controller;
 
+import dao.ReservaDao;
 import dao.VooDAO;
 import exception.ColecaoException;
 import exception.ConexaoException;
@@ -28,6 +29,8 @@ public class AcoesGerente implements IAcao {
         String assentos = request.getParameter("assento");
         String duracacao = request.getParameter("duracaoVoo");
 
+
+        System.out.println();
 
         String criar = request.getParameter("criar");
         String cancelar = request.getParameter("cancelar");
@@ -66,7 +69,10 @@ public class AcoesGerente implements IAcao {
 
     public void cancelar(String numVoo) throws SQLException, ClassNotFoundException, ColecaoException, ConexaoException {
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
+            ReservaDao reservaDao = new ReservaDao(connection);
+            reservaDao.cancelarVoo(numVoo);
             VooDAO vooDAO = new VooDAO(connection);
+            System.out.println("cancelar Entrei");
             vooDAO.deletarVoo(Integer.parseInt(numVoo));
         }
     }

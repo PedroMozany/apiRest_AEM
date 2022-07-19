@@ -21,6 +21,10 @@ public class Login implements IAcao {
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ColecaoException, ConexaoException {
         HttpSession session = request.getSession();
 
+        int status = response.getStatus();
+        System.out.println(status);
+
+
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         String matricula = request.getParameter("matricula");

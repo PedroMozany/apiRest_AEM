@@ -25,7 +25,8 @@ public class FilterController implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-
+        int status = response.getStatus();
+        System.out.println(status);
 
         String paramAcao = request.getParameter("acao");
         String caminho = "controller." + paramAcao;

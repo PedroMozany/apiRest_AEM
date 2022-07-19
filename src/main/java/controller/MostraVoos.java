@@ -20,15 +20,10 @@ public class MostraVoos implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
 
-        int status = response.getStatus();
-
-        System.out.println(status);
         List<Voos> lista;
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             VooDAO vooDAO = new VooDAO(connection);
             lista = vooDAO.getVoos();
-        } catch (SQLException | ClassNotFoundException e) {
-            return "redirect:Entrada?acao=TelaErro";
         }
 
         HttpSession session = request.getSession();

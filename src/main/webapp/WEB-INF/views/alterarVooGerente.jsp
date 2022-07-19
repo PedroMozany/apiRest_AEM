@@ -36,9 +36,8 @@ input[type=number] {
 					<span class="input-group-text">Preço inicial PH</span>
 				</div>
 				<input type="number" class="form-control" aria-label="Username"
-					name="preco" value="${voos.preco}" step="0.01">
+					name="preco" value="${voos.precoForm}" step="0.01">
 			</div>
-
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">Origem PH</span>

@@ -36,8 +36,8 @@ public class FilterAutorizacao implements Filter {
 
 
         boolean usuarioNaoEstaLogado = (session.getAttribute("logado") == null);
-        boolean acaoProtegida = !(paramAcao.equals("LoginGoogle") | paramAcao.equals("Login") | paramAcao.equals("MostraLogin") | paramAcao.equals("MostraCadastro") | paramAcao.equals("Cadastro") | paramAcao.equals("MostraLoginG")| paramAcao.equals("MostraVoos"));
-        boolean acaoProtegidaUsuario = (paramAcao.equals("MostraLoginG"));
+        boolean acaoProtegida = !(paramAcao.equals("LoginGoogle") | paramAcao.equals("LoginGoogle") | paramAcao.equals("Login") | paramAcao.equals("MostraLogin") | paramAcao.equals("MostraCadastro") | paramAcao.equals("Cadastro") | paramAcao.equals("MostraLoginG")| paramAcao.equals("MostraVoos"));
+        boolean acaoProtegidaUsuario = (paramAcao.equals("MostraLoginG") | paramAcao.equals("MostraPaginaG") );
 
         if(nome != null){
             if(nome.getTipo() == "USUARIO" && acaoProtegidaUsuario){
