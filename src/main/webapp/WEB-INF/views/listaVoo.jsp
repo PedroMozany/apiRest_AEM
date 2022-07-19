@@ -21,7 +21,6 @@
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
 
-  <form action="Entrada?acao=VerificaLogin" method="post" class="row g-6">
     <table class="table table-striped-columns table-hover table-sm align-middle">
       <thead>
       <tr class="table-dark">
@@ -51,7 +50,6 @@
       </c:forEach>
       </tbody>
     </table>
-  </form>
 </div>
 </body>
 </html>
