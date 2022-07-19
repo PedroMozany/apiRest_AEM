@@ -16,9 +16,9 @@
 </h3>
 <div  style="padding-top:15px; text-align: center;">
   <form action="Entrada?acao=MostraVoos" method="post">
-    <button type="submit" class="btn btn-info">Comprar voos disponiveis</button>
+    <button type="submit" class="btn btn-info">Voltar para voos disponiveis</button>
   </form>
-  <button class="btn btn-info"><a style="text-decoration: none; color: black" href="Entrada?acao=Logout">SAIR</a></button>
+  <button class="btn btn-danger"><a style="text-decoration: none; color: black" href="Entrada?acao=Logout">Logout</a></button>
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
 
