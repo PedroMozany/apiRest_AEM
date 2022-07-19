@@ -21,9 +21,6 @@ public class ApiDistancia {
 
     public double duracao(String destino, String origem) throws IOException, ResponseProcessingException {
 
-
-
-
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         Request request = new Request.Builder()

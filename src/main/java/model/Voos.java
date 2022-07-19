@@ -1,9 +1,12 @@
 package model;
 
 
+import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Voos {
     private int nmrDoVoo;
@@ -13,12 +16,12 @@ public class Voos {
     private Aeroporto destino;
     private String duracaoVoo;
     private int numeroAssentos;
-    private  String precoForm;
+    private String precoForm;
     transient SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 
-    public Voos(String data, double preco, Aeroporto origem, Aeroporto destino,String duracaoVoo, int numeroAssentos) throws ParseException {
-        this.data =  sdf.parse(data);
+    public Voos(String data, double preco, Aeroporto origem, Aeroporto destino, String duracaoVoo, int numeroAssentos) throws ParseException {
+        this.data = sdf.parse(data);
         this.preco = preco;
         this.origem = origem;
         this.destino = destino;
@@ -27,7 +30,7 @@ public class Voos {
     }
 
 
-    public Voos(int nmrDoVoo, String data, double preco, String origem, String destino,String duracaoVoo, int numeroAssentos) throws ParseException {
+    public Voos(int nmrDoVoo, String data, double preco, String origem, String destino, String duracaoVoo, int numeroAssentos) throws ParseException {
         this.nmrDoVoo = nmrDoVoo;
         this.data = sdf.parse(data);
         this.preco = preco;
@@ -48,7 +51,7 @@ public class Voos {
 
 
     public String getPrecoForm() {
-        this.precoForm = String.format("%.2f",this.preco);
+        this.precoForm = String.format("%.2f", this.preco);
         return precoForm;
     }
 
@@ -73,12 +76,34 @@ public class Voos {
     }
 
 
+    public int decrementarAss() {
+        return this.numeroAssentos -= 1;
+    };
+
+    public long prazo() {
+        Date dataAtual = new Date();
+        long dife = this.data.getTime() - dataAtual.getTime();
+        TimeUnit time = TimeUnit.DAYS;
+        long diffrence = time.convert(dife, TimeUnit.MILLISECONDS);
+        return diffrence;
+    }
+    public double desconto() {
+        if(prazo() <= 2 && this.numeroAssentos != 0){
+            double desconto = (this.preco * 20) / 100;
+            this.preco -= desconto;
+            return this.preco;
+        }else{
+           return this.preco;
+        }
+    }
+
+
     public String toString() {
         return "Numero do Voo: " + nmrDoVoo + "\n" +
                 "Data: " + sdf.format(data) + "\n" +
-                "Preço: " +"R$ " + String.format("%.2f",preco) + "\n" +
+                "Preço: " + "R$ " + String.format("%.2f", preco) + "\n" +
                 "Origem: " + origem + "\n" +
                 "Destino: " + destino + "\n" +
-                "Duração do Voo: " + duracaoVoo +"h";
+                "Duração do Voo: " + duracaoVoo + "h";
     }
 }
