@@ -16,6 +16,7 @@
 </h3>
 <div  style="text-align: center;">
   <form action="Entrada?acao=MostraPerfil" method="post">
+  <h5>${logado.nome}</h5>
     <button type="submit" class="btn btn-info">Perfil do Usuario</button>
   </form>
 </div>

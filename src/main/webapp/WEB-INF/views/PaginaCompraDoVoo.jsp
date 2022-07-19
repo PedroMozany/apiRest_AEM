@@ -9,7 +9,7 @@
 <H1 style="text-align: center">Finalizar compra</H1>
 <p style="text-align: center">Informações sobre sua viagem</p>
 <div style="text-align: inherit; padding-left: 400px">
-    <p><b>Nome:</b> ${usuario.nome} | <b>CPF:</b> ${usuario.cpf}</p>
+    <p><b>Nome:</b> ${logado.nome} | <b>CPF:</b> ${logado.cpf}</p>
     <p><b>Origem do Voo:</b> ${compra.origem.cidade}</p>
     <p><b>Destino do Voo:</b> ${compra.destino.cidade}</p>
     <p><b>Duração da viagem:</b> ${compra.duracaoVoo}h | <b>Data:</b> ${compra.data} </p>
@@ -27,7 +27,7 @@
     <div class="col-2">
       <form action="Entrada?acao=AcoesUsuario" method="post">
           <input type="hidden" name="numVoo" value="${compra.nmrDoVoo}">
-          <input type="hidden" name="cpf" value="${usuario.cpf}">
+          <input type="hidden" name="cpf" value="${logado.cpf}">
           <input type="hidden" name="finalizar" value="finalizar">
         <button type="submit" class="btn btn-primary">Confirmar compra</button>
       </form>
