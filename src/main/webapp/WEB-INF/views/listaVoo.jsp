@@ -14,11 +14,6 @@
 <h3 style="text-align: center; margin-top: 15px;">
   Voos Disponiveis
 </h3>
-<div  style="padding-top:15px; text-align: center;">
-  <form action="Entrada?acao=MostraLogin" method="post">
-    <button type="submit" class="btn btn-info">Login/Cadastro</button>
-  </form>
-</div>
 <div  style="text-align: center;">
   <form action="Entrada?acao=MostraPerfil" method="post">
     <button type="submit" class="btn btn-info">Perfil do Usuario</button>
