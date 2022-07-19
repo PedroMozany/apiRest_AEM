@@ -22,15 +22,15 @@
 <form action="Entrada?acao=AcoesGerente" method="post">
 
     <div class="container" style="width: 400px">
-        <h5 style="margin-left: 30px">Alterando voo : ${voos.nmrDoVoo}</h5>
+        <h5 style="margin-left: 100px; margin-top: 30px">Alterando voo : ${voos.nmrDoVoo}</h5>
         <input type="hidden" name="alterar" value="${voos.nmrDoVoo}">
         <br>
 
         <div class="input-group mb-3">
             <div>
-                <span class="input-group-text">preco inicial PH</span>
+                <span class="input-group-text">Preço inicial PH</span>
             </div>
-            <input type="number" class="form-control" aria-label="Username" name="preco" value="${voos.precoForm}" step="0.01">
+            <input type="number" class="form-control" aria-label="Username" name="preco" value="${voos.preco}" step="0.01">
         </div>
 
         <div class="input-group mb-3">
@@ -69,24 +69,24 @@
 
         </div>
 
-        <div class="row">
+<!--         <div class="row"> -->
 
-            <h4 style="padding: 30px" >Confirme seus dados agora</h4>
-            <div class="col-md">
-                <input type="number" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm" placeholder="Matricula">
-            </div>
+<!--             <h4 style="padding: 30px" >Confirme seus dados agora</h4> -->
+<!--             <div class="col-md"> -->
+<!--                 <input type="number" class="form-control" aria-label="Sizing example input" -->
+<!--                        aria-describedby="inputGroup-sizing-sm" placeholder="Matricula"> -->
+<!--             </div> -->
 
-            <div class="col-md">
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm" placeholder="Senha">
-            </div>
+<!--             <div class="col-md"> -->
+<!--                 <input type="text" class="form-control" aria-label="Sizing example input" -->
+<!--                        aria-describedby="inputGroup-sizing-sm" placeholder="Senha"> -->
+<!--             </div> -->
 
-        </div>
+<!--         </div> -->
 
         <div style="margin-left: 150px">
             <br>
-            <button type="button submmit" class="btn btn-primary btn-md">alterar</button>
+            <button type="submit" class="btn btn-primary btn-md">Alterar</button>
         </div>
     </div>
 

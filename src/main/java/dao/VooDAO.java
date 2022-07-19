@@ -91,7 +91,7 @@ public class VooDAO {
             stm.setDouble(2, voo.getPreco());
             stm.setString(3, String.valueOf(voo.getOrigem().getCodigo()));
             stm.setString(4, String.valueOf(voo.getDestino().getCodigo()));
-            stm.setInt(5, Integer.parseInt("" + voo.getDuracaoVoo()));
+            stm.setString(5, voo.getDuracaoVoo());
             stm.setInt(6, voo.getNumeroAssentos());
             stm.setInt(7, voo.getNmrDoVoo());
             stm.execute();

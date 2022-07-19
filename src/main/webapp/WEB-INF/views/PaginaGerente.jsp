@@ -50,6 +50,7 @@
 	                    	<form action="Entrada?acao=MostraAlterarVoo" method="post">
 	                            <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
 	                            <button style="width: 100px" type="submit" class="btn btn-warning">ALTERAR</button>
+	                           
 	                        </form>
                         </div>
                         <div>
