@@ -17,7 +17,7 @@
     <form action="Entrada?acao=MostraFormVoo" method="post">
         <button type="submit" class="btn btn-success">Adicionar Voo</button>
     </form>
-    <button class="btn btn-success"><a style="text-decoration: none; color: white" href="Entrada?acao=Logout">SAIR</a></button>
+    <button class="btn btn-danger"><a style="text-decoration: none; color: white" href="Entrada?acao=Logout">LOGOUT</a></button>
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
 
@@ -46,14 +46,18 @@
                     <td>${voo.precoForm}</td>
                     <td>${voo.numeroAssentos}</td>
                     <td>
-                        <form action="Entrada?acao=AcoesGerente" method="post">
-                            <input type="hidden" name="cancelar" value="${voo.nmrDoVoo}">
-                            <button style="width: 100px" type="submit" class="btn btn-danger">CANCELAR</button>
-                        </form>
-                        <form action="Entrada?acao=MostraAlterarVoo" method="post">
-                            <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
-                            <button style="width: 100px" type="submit" class="btn btn-warning">ALTERAR</button>
-                        </form>
+                    	<div>
+	                    	<form action="Entrada?acao=MostraAlterarVoo" method="post">
+	                            <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
+	                            <button style="width: 100px" type="submit" class="btn btn-warning">ALTERAR</button>
+	                        </form>
+                        </div>
+                        <div>
+	                        <form action="Entrada?acao=AcoesGerente" method="post">
+	                            <input type="hidden" name="cancelar" value="${voo.nmrDoVoo}">
+	                            <button style="width: 100px" type="submit" class="btn btn-danger">CANCELAR</button>
+	                        </form>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

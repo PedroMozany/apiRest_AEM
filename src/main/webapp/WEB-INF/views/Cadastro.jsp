@@ -13,22 +13,22 @@
     <form class="row align-items-center" action="Entrada?acao=Cadastro" method="post">
         <div class="col">
             <label for="nome" class="form-label">Nome:</label>
-            <input type="text" class="form-control" id="nome" name="nome" value="${google.nome}" required>
+            <input type="text" class="form-control" id="nome" name="nome" value="${google.nome}" placeholder="Nome" required>
         </div>
         <br>
         <div class="col">
             <label for="cpf" class="form-label">Cpf:</label>
-            <input type="text" class="form-control" id="cpf" name="cpf"  required>
+            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="11" size="11" required>
         </div>
         <br>
         <div class="col">
             <label for="email" class="form-label">Email:</label>
-            <input type="text" class="form-control" id="email" name="email" value="${google.email}" required>
+            <input type="email" class="form-control" id="email" name="email" value="${google.email}" placeholder="E-mail" required>
         </div>
         <br>
         <div class="col">
             <label for="senha" class="form-label">Senha:</label>
-            <input type="password" class="form-control" id="senha" name="senha" required>
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
         </div>
         <br>
         <div style="padding-top: 20px" class="row">

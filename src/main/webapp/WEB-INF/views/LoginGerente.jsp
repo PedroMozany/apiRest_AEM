@@ -21,7 +21,7 @@
 
   <br>
   <form class="row align-items-center" action="Entrada?acao=Login" method="post">
-    <div class="col">
+    <div class="col" >
       <input type="number" class="form-control" name="matricula"  placeholder="Matricula" required>
     </div>
     <br>
@@ -33,7 +33,7 @@
       <div class="col align-self-start">
       </div>
       <div class="col-1 align-self-center">
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Login</button>
       </div>
       <div class="col align-self-end">
       </div>
