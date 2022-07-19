@@ -1,31 +1,38 @@
 package controller;
 
+import dao.UsuarioDAO;
 import dao.VooDAO;
 import factory.ConectionFactory;
+import model.Usuario;
 import model.Voos;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.List;
 
-public class MostraVoos implements IAcao {
+public class MostrarPaginaCompra implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+        String numVoo = request.getParameter("numVoo");
+        String cpf = request.getParameter("cpf");
+        String email = request.getParameter("email");
 
-        List<Voos> lista;
+
+        Voos voos;
+        Usuario usuario;
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             VooDAO vooDAO = new VooDAO(connection);
-            lista = vooDAO.getVoos();
+            UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
+            usuario = usuarioDAO.usuarioExiste(email, cpf);
+            voos = vooDAO.buscarVoo(numVoo);
         }
 
-        HttpSession session = request.getSession();
-        session.setAttribute("lista", lista);
-        return "forward:listaVoo.jsp";
+        request.setAttribute("usuario", usuario);
+        request.setAttribute("compra", voos);
+        return "forward:PaginaCompraDoVoo.jsp";
     }
 }

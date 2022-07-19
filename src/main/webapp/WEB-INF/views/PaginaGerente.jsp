@@ -17,6 +17,7 @@
     <form action="Entrada?acao=MostraFormVoo" method="post">
         <button type="submit" class="btn btn-success">Adicionar Voo</button>
     </form>
+    <button class="btn btn-success"><a style="text-decoration: none; color: white" href="Entrada?acao=Logout">SAIR</a></button>
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
 
@@ -37,7 +38,7 @@
             <tbody>
             <c:forEach items="${lista}" var="voo">
                 <tr class="table-light">
-                    <td>${voo.nmrDoVoo}</td>
+                    <th scope="row">${voo.nmrDoVoo}</th>
                     <td>${voo.data}</td>
                     <td>${voo.origem.cidade}</td>
                     <td>${voo.destino.cidade}</td>

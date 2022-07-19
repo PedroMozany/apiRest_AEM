@@ -30,7 +30,7 @@
             <div>
                 <span class="input-group-text">preco inicial PH</span>
             </div>
-            <input type="text" class="form-control" aria-label="Username" name="preco" value="${voos.preco} ">
+            <input type="number" class="form-control" aria-label="Username" name="preco" value="${voos.precoForm}" step="0.01">
         </div>
 
         <div class="input-group mb-3">

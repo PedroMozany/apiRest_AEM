@@ -48,7 +48,7 @@ public class ReservaDao {
     }
 
     public List<Usuario> listPassageiros(String numVoo) throws SQLException {
-        String query = "select nome, cpf, email, senha from usuario right join(select numeroreserva, voo, usuario from reserva where voo = ?)reserva on cpf = reserva.usuario";
+        String query = "select  nome, cpf, email, senha from usuario right join(select numeroreserva, voo, usuario from reserva where voo = ?)reserva on cpf = reserva.usuario";
         List<Usuario> list = new LinkedList<>();
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, numVoo);
@@ -63,10 +63,11 @@ public class ReservaDao {
         }
     }
 
-    public void cancelarReserva(String idReserva) throws SQLException {
-        String query = "DELETE FROM reserva WHERE NUMERORESERVA = ?";
+    public void cancelarReserva(String numVoo,String cpf) throws SQLException {
+        String query = "DELETE FROM reserva WHERE VOO = ? AND USUARIO = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setString(1, idReserva);
+            pst.setString(1, numVoo);
+            pst.setString(2,cpf);
             pst.execute();
         }
     }

@@ -16,12 +16,12 @@
 </h3>
 <div  style="padding-top:15px; text-align: center;">
   <form action="Entrada?acao=MostraLogin" method="post">
-    <button type="button" class="btn btn-info">Login/Cadastro</button>
+    <button type="submit" class="btn btn-info">Login/Cadastro</button>
   </form>
 </div>
 <div  style="text-align: center;">
   <form action="Entrada?acao=MostraPerfil" method="post">
-    <button type="button" class="btn btn-info">Perfil do Usuario</button>
+    <button type="submit" class="btn btn-info">Perfil do Usuario</button>
   </form>
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
@@ -30,27 +30,28 @@
     <table class="table table-striped-columns table-hover table-sm align-middle">
       <thead>
       <tr class="table-dark">
-        <th scope="col">Numero do Voo</th>
         <th scope="col">Data</th>
         <th scope="col">Origem</th>
         <th scope="col">Destino</th>
         <th scope="col">Duração</th>
         <th scope="col">Preço</th>
-        <th scope="col">N. De Assentos</th>
         <th scope="col">Ações</th>
       </tr>
       </thead>
       <tbody >
       <c:forEach items="${lista}" var="voo">
         <tr class="table-light">
-          <th scope="row">${voo.numeroVoo}</th>
           <td>${voo.data}</td>
-          <td>${voo.origem}</td>
-          <td>${voo.destino}</td>
+          <td>${voo.origem.cidade}</td>
+          <td>${voo.destino.cidade}</td>
           <td>${voo.duracaoVoo}</td>
-          <td>${voo.preco}</td>
-          <td>${voo.numeroAssentos}</td>
-          <td><button type="button" class="btn btn-success">Comprar</button></td>
+          <td>${voo.precoForm}</td>
+          <form action="Entrada?acao=MostrarPaginaCompra" method="post">
+            <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
+            <input type="hidden" name="cpf" value="${logado.cpf}">
+            <input type="hidden" name="email" value="${logado.email}">
+            <td><button type="submit" class="btn btn-success">Comprar</button></td>
+          </form>
         </tr>
       </c:forEach>
       </tbody>
