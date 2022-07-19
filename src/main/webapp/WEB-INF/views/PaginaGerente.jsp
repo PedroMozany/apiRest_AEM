@@ -4,7 +4,9 @@
 <html>
 <head>
     <title>Area Restrita</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+    crossorigin="anonymous">
 </head>
 <body>
 <h1 style="text-align: center; margin-top: 15px;">
@@ -21,8 +23,7 @@
 </div>
 <div style="padding-top:30px; padding-left: 100px; padding-right: 100px;">
 
-    <form method="post" class="row g-6">
-        <table class="table table-striped-columns table-hover table-sm align-middle">
+        <table class="table table-striped-columns table-hover table-sm align-middle table-responsive">
             <thead>
             <tr class="table-dark">
                 <th scope="col">Numero do Voo</th>
@@ -46,25 +47,19 @@
                     <td>${voo.precoForm}</td>
                     <td>${voo.numeroAssentos}</td>
                     <td>
-                    	<div>
-	                    	<form action="Entrada?acao=MostraAlterarVoo" method="post">
-	                            <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
-	                            <button style="width: 100px" type="submit" class="btn btn-warning">ALTERAR</button>
-	                           
-	                        </form>
-                        </div>
-                        <div>
-	                        <form action="Entrada?acao=AcoesGerente" method="post">
-	                            <input type="hidden" name="cancelar" value="${voo.nmrDoVoo}">
-	                            <button style="width: 100px" type="submit" class="btn btn-danger">CANCELAR</button>
-	                        </form>
-                        </div>
+                    	<form action="Entrada?acao=MostraAlterarVoo" method="post"> 
+                            <input type="hidden" name="numVoo" value="${voo.nmrDoVoo}">
+                            <button style="width: 100px" type="submit" class="btn btn-warning">ALTERAR</button>
+                    	</form> 
+                        <form action="Entrada?acao=AcoesGerente" method="post">
+                            <input type="hidden" name="cancelar" value="${voo.nmrDoVoo}">
+                            <button style="width: 100px" type="submit" class="btn btn-danger">CANCELAR</button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-    </form>
 </div>
 </body>
 </html>
