@@ -38,7 +38,12 @@
         <tr class="table-light">
           <td>${voo.data}</td>
           <td>${voo.origem.cidade}</td>
-          <td>${voo.destino.cidade}</td>
+          <td>
+            <form action="Entrada?acao=CalcularClima" method="post" style="text-align: center; margin-top:9%;">
+              <input type="hidden" name="cidade" value="${voo.destino.cidade}">
+              <button type="submit" class="btn btn-link">${voo.destino.cidade}</button>
+            </form>
+          </td>
           <td>${voo.duracaoVoo}</td>
           <td>${voo.precoForm}</td>
           <form action="Entrada?acao=MostrarPaginaCompra" method="post">
