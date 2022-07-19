@@ -14,7 +14,7 @@ public class Voos {
     private String duracaoVoo;
     private int numeroAssentos;
     private  String precoForm;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    transient SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public Voos(String data, double preco, Aeroporto origem, Aeroporto destino,String duracaoVoo, int numeroAssentos) throws ParseException {
