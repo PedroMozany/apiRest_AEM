@@ -2,6 +2,8 @@ package servlet;
 
 import com.google.gson.Gson;
 import dao.VooDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Voos;
 
@@ -21,16 +23,18 @@ public class ApiRestJson extends HttpServlet {
 
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Voos> list;
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             VooDAO vooDAO = new VooDAO(connection);
             list = vooDAO.getVoos();
-        } catch (SQLException e) {
+        } catch (SQLException | ColecaoException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } catch (ConexaoException e) {
             throw new RuntimeException(e);
         }
 

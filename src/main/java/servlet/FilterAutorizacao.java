@@ -19,11 +19,15 @@ public class FilterAutorizacao implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+
+
         System.out.println("Autorização");
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
+       int status = response.getStatus();
+        System.out.println(status);
 
         String paramAcao = request.getParameter("acao");
         HttpSession session = request.getSession();
@@ -37,7 +41,7 @@ public class FilterAutorizacao implements Filter {
 
         if(nome != null){
             if(nome.getTipo() == "USUARIO" && acaoProtegidaUsuario){
-                response.sendRedirect("Entrada?acao=Erro");
+                response.sendRedirect("Entrada?acao=TelaErro");
                 return;
             }
         }else  if (usuarioNaoEstaLogado && acaoProtegida) {

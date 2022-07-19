@@ -2,6 +2,8 @@ package controller;
 
 import dao.UsuarioDAO;
 import dao.VooDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Usuario;
 import model.Voos;
@@ -16,7 +18,7 @@ import java.text.ParseException;
 
 public class MostrarPaginaCompra implements IAcao {
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
         String numVoo = request.getParameter("numVoo");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");

@@ -1,6 +1,8 @@
 package controller;
 
 import dao.ReservaDao;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 
 import javax.servlet.ServletException;
@@ -13,7 +15,7 @@ import java.text.ParseException;
 
 public class AcoesUsuario implements IAcao{
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
 
         String numero = request.getParameter("numVoo");
         String cpf = request.getParameter("cpf");
@@ -34,14 +36,14 @@ public class AcoesUsuario implements IAcao{
     }
 
 
-    public void finalizarCompra(String cpf,String numVoo) throws SQLException, ClassNotFoundException {
+    public void finalizarCompra(String cpf,String numVoo) throws SQLException, ClassNotFoundException, ColecaoException, ConexaoException {
         try(Connection connection = new ConectionFactory().recuperarConexao()){
             ReservaDao reservaDao = new ReservaDao(connection);
             reservaDao.criarReserva(numVoo,cpf);
         }
     }
 
-    public void cancelarTicket(String cpf,String numVoo) throws SQLException, ClassNotFoundException {
+    public void cancelarTicket(String cpf,String numVoo) throws SQLException, ClassNotFoundException, ColecaoException, ConexaoException {
         try(Connection connection = new ConectionFactory().recuperarConexao()) {
             ReservaDao reservaDao = new ReservaDao(connection);
             reservaDao.cancelarReserva(numVoo, cpf);

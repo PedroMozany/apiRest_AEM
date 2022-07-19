@@ -1,6 +1,8 @@
 package controller;
 
 import dao.UsuarioDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Usuario;
 
@@ -13,7 +15,7 @@ import java.sql.SQLException;
 
 public class Cadastro implements IAcao{
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ColecaoException, ConexaoException {
 
 
         String nome = request.getParameter("nome");

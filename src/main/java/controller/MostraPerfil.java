@@ -1,6 +1,8 @@
 package controller;
 
 import dao.ReservaDao;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Usuario;
 import model.Voos;
@@ -17,7 +19,7 @@ import java.util.List;
 
 public class MostraPerfil implements IAcao{
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("logado");
         request.setAttribute("usuario", usuario);

@@ -1,8 +1,9 @@
 package controller;
 
-import com.mysql.cj.xdevapi.JsonString;
 import dao.GerenteDAO;
 import dao.UsuarioDAO;
+import exception.ColecaoException;
+import exception.ConexaoException;
 import factory.ConectionFactory;
 import model.Gerente;
 import model.Usuario;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 
 public class Login implements IAcao {
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ColecaoException, ConexaoException {
         HttpSession session = request.getSession();
 
         String email = request.getParameter("email");
