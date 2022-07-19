@@ -74,7 +74,10 @@ public class AcoesGerente implements IAcao {
         try (Connection connection = new ConectionFactory().recuperarConexao()) {
             VooDAO vooDAO = new VooDAO(connection);
             String dataFormat = data.replace("-", "/");
-            Voos voo = new Voos(Integer.parseInt(numVoo), dataFormat, Double.parseDouble(preco), origem, destino, duracacao, Integer.parseInt(assentos));
+            String cidadeOrigem = pegarCidade(origem);
+            String cidaeDestino = pegarCidade(destino);
+            ApiDistancia duracao = new ApiDistancia(cidaeDestino, cidadeOrigem);
+            Voos voo = new Voos(Integer.parseInt(numVoo), dataFormat, Double.parseDouble(preco), origem, destino, duracao.getTempo(), Integer.parseInt(assentos));
             vooDAO.atualizarVoo(voo);
         }
     }

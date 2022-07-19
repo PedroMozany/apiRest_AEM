@@ -39,7 +39,7 @@
     </form>
     <form action="Entrada?acao=MostraCadastro" method="post" class="row g-3">
         <div style="padding-left: 400px; margin-top: 100px;" class="col-12">
-            <p >Ainda nao tem conta no site?</p>
+            <p >Ainda não tem conta no site?</p>
             <button style="width: 200px" type="submit" class="btn btn-primary">Fazer cadastro</button>
         </div>
     </form>
