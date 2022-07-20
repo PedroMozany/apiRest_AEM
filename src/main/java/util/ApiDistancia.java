@@ -24,7 +24,7 @@ public class ApiDistancia {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         Request request = new Request.Builder()
-                .url("https://maps.googleapis.com/maps/api/distancematrix/json?destinations=" + destino + "&origins=" + origem + "&key=AIzaSyADtQO0uGoCiAh7836gxFNbO_kavmwifiQ")
+                .url("https://maps.googleapis.com/maps/api/distancematrix/json?destinations=" + destino + "&origins=" + origem + "&key= chave distantica aqui")
                 .get()
                 .build();
 
