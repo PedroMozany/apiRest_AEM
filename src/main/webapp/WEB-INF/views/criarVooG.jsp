@@ -31,7 +31,7 @@
                         <div class="col align-self-center">
                             <div>
                                 <label class="form-label">Data do voo</label>
-                                <input type="date" class="form-control" name="data" required>
+                                <input type="text" class="form-control" name="data" required>
                             </div>
                             <div>
                                 <label class="form-label">Preço</label>
