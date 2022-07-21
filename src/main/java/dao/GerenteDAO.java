@@ -14,7 +14,7 @@ public class GerenteDAO {
     }
 
     public Gerente gerenteExiste(String matricula, String senha) throws SQLException, ColecaoException {
-        String sql = "SELECT * FROM redteam.gerente WHERE MATRICULA = ? AND SENHA = ?";
+        String sql = "SELECT * FROM gerente WHERE MATRICULA = ? AND SENHA = ?";
 
 
         try(PreparedStatement pstm = connection.prepareStatement(sql)){

@@ -15,7 +15,7 @@ public class UsuarioDAO {
 
 
     public void incluir(Usuario usuario) throws ColecaoException {
-        String sql = "INSERT INTO redteam.usuario (NOME, CPF, EMAIL, SENHA) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuario (NOME, CPF, EMAIL, SENHA) VALUES (?, ?, ?, ?)";
 
         try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
@@ -41,9 +41,9 @@ public class UsuarioDAO {
     }
 
     public Usuario usuarioExistePorEmail(String email) throws ColecaoException {
-        String sql = "SELECT * FROM redteam.usuario WHERE EMAIL = ?";
+        String sql = "SELECT * FROM usuario WHERE EMAIL = ?";
 
-        try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+        try(PreparedStatement pstm = connection.prepareStatement(sql)){
             pstm.setString(1, email);
             pstm.execute();
 
@@ -65,9 +65,9 @@ public class UsuarioDAO {
 
 
     public Usuario usuarioExiste(String email, String senha) throws SQLException {
-        String sql = "SELECT * FROM redteam.usuario WHERE EMAIL = ? AND SENHA = ?";
+        String sql = "SELECT * FROM usuario WHERE EMAIL = ? AND SENHA = ?";
 
-        try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+        try(PreparedStatement pstm = connection.prepareStatement(sql)){
             pstm.setString(1, email);
             pstm.setString(2, senha);
             pstm.execute();

@@ -12,7 +12,7 @@ public class ConectionFactory {
 
     public ConectionFactory() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
-        comboPooledDataSource.setJdbcUrl("jdbc:postgres://xuzotaszqmdsgo:15ec21679fd40d5d0af51e9825eb9e885578e5bccc865f627e01f89ffa1ae90f@ec2-34-192-210-139.compute-1.amazonaws.com:5432/d6v1aen4h4hkqe");
+        comboPooledDataSource.setJdbcUrl("jdbc:postgresql://ec2-34-192-210-139.compute-1.amazonaws.com:5432/d6v1aen4h4hkqe?sslmode=require");
         comboPooledDataSource.setUser("xuzotaszqmdsgo");
         comboPooledDataSource.setPassword("15ec21679fd40d5d0af51e9825eb9e885578e5bccc865f627e01f89ffa1ae90f");
         comboPooledDataSource.setMaxPoolSize(15);
