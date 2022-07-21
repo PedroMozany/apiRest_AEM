@@ -42,11 +42,6 @@
             <version>0.9.1.2</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.29</version>
-        </dependency>
-        <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
@@ -92,6 +87,11 @@
             <artifactId>okhttp</artifactId>
             <version>4.9.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -101,7 +101,18 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
             </plugin>
+                <plugin>
+                    <groupId>com.heroku.sdk</groupId>
+                    <artifactId>heroku-maven-plugin</artifactId>
+                    <version>3.0.3</version>
+                    <configuration>
+                        <processTypes>
+                            <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+                        </processTypes>
+                    </configuration>
+                </plugin>
         </plugins>
+
     </build>
     <repositories>
         <repository>
