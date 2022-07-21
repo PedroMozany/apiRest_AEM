@@ -19,12 +19,12 @@
         <filter-name>Controller</filter-name>
         <url-pattern>/Entrada</url-pattern>
     </filter-mapping>
-    <error-page>
-        <error-code>500</error-code>
-        <location>/TelaErro</location>
-    </error-page>
-    <error-page>
-        <error-code>401</error-code>
-        <location>/TelaErro</location>
-    </error-page>
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/TelaErro</location>-->
+<!--    </error-page>-->
+<!--    <error-page>-->
+<!--        <error-code>401</error-code>-->
+<!--        <location>/TelaErro</location>-->
+<!--    </error-page>-->
 </web-app>
