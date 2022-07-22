@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="CompanhiaAerea-1.0-SNAPSHOT.war">
+    <root id="archive" name="CompanhiaAerea.war">
       <element id="artifact" artifact-name="CompanhiaAerea:war exploded" />
     </root>
   </artifact>
