@@ -23,7 +23,7 @@
         <div class="col-5">
             <div id="g_id_onload"
                  data-client_id="1018281432326-e4sdi7eikd89vf17bhivcce3hskbujns.apps.googleusercontent.com"
-                 data-login_uri="CompanhiaAerea_war_exploded/Entrada?acao=LoginGoogle"
+                 data-login_uri="/Entrada?acao=LoginGoogle"
                  data-auto_prompt="false">
             </div>
             <div class="g_id_signin"
