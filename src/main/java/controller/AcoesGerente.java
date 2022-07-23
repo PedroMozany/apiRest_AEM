@@ -34,14 +34,14 @@ public class AcoesGerente implements IAcao {
         String cancelar = request.getParameter("cancelar");
         String alterar = request.getParameter("alterar");
 
-
+        System.out.println(cancelar);
         if (criar != null) {
             System.out.println("Criar");
             criarVoo(data, origem, destino, preco, assentos);
             return "redirect:Entrada?acao=MostraPaginaG";
         } else if (cancelar != null) {
             System.out.println("cancelar");
-            cancelar(cancelar);
+            cancelar(Integer.parseInt(cancelar));
             return "redirect:Entrada?acao=MostraPaginaG";
         } else {
             System.out.println(alterar);
@@ -64,10 +64,10 @@ public class AcoesGerente implements IAcao {
     }
 
 
-    public void cancelar(String numVoo) throws ColecaoException {
+    public void cancelar(int numVoo) throws ColecaoException {
         ReservaDao.cancelarVoo(numVoo);
         System.out.println("cancelar Entrei");
-        VooDAO.deletarVoo(Integer.parseInt(numVoo));
+        VooDAO.deletarVoo(numVoo);
 
     }
 

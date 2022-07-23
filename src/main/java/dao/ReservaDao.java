@@ -100,10 +100,10 @@ public class ReservaDao {
         }
     }
 
-    public static void cancelarVoo(String numVoo) throws ColecaoException {
+    public static void cancelarVoo(int numVoo) throws ColecaoException {
         String query = "DELETE FROM reserva WHERE VOO = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setString(1, numVoo);
+            pst.setInt(1, numVoo);
             pst.execute();
         }catch (SQLException e){
             throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);

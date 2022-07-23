@@ -100,7 +100,7 @@ public class VooDAO {
 
     public static void atualizarVoo(Voos voo) throws ColecaoException {
         try (PreparedStatement stm = connection
-                .prepareStatement("UPDATE voos P SET P.DATA = ?, P.PRECO = ?, P.ORIGEM = ?, P.DESTINO = ?, P.DURACAOVOO = ?, P.NUMEROASSENTOS = ? WHERE NMRVOO = ?")) {
+                .prepareStatement("UPDATE voos  SET DATA = ?, PRECO = ?, ORIGEM = ?,DESTINO = ?, DURACAOVOO = ?,NUMEROASSENTOS = ? WHERE NMRVOO = ?")) {
 
             stm.setString(1, voo.getData());
             stm.setDouble(2, voo.getPreco());
