@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Cadastro implements IAcao{
+public class Cadastro implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ColecaoException, ConexaoException {
 
@@ -23,17 +23,11 @@ public class Cadastro implements IAcao{
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
+        Usuario usuario = new Usuario(nome, cpf, email, senha);
+        System.out.println(usuario);
+        UsuarioDAO.incluir(usuario);
+        return "redirect:Entrada?acao=MostraLogin";
 
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-            Usuario usuario = new Usuario(nome, cpf, email, senha);
-            System.out.println(usuario);
-            usuarioDAO.incluir(usuario);
-            return "redirect:Entrada?acao=MostraLogin";
-
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
 

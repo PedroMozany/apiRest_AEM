@@ -20,11 +20,9 @@ public class MostraVoos implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
 
-        List<Voos> lista;
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            VooDAO vooDAO = new VooDAO(connection);
-            lista = vooDAO.getVoos();
-        }
+
+        List<Voos> lista = VooDAO.getVoos();
+
 
         HttpSession session = request.getSession();
         session.setAttribute("lista", lista);

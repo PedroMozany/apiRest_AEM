@@ -9,17 +9,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import javax.ws.rs.client.ResponseProcessingException;
 import java.io.IOException;
 
 public class ApiDistancia {
     private String tempo;
-    public ApiDistancia(String destino, String origem) throws ResponseProcessingException, IOException {
+    public ApiDistancia(String destino, String origem) throws IOException {
       this.tempo = String.format("%.2f", duracao(destino, origem));
     }
 
 
-    public double duracao(String destino, String origem) throws IOException, ResponseProcessingException {
+    public double duracao(String destino, String origem) throws IOException {
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 

@@ -17,18 +17,15 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
-public class MostraPerfil implements IAcao{
+public class MostraPerfil implements IAcao {
     @Override
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("logado");
         request.setAttribute("usuario", usuario);
 
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            ReservaDao reservaDao = new ReservaDao(connection);
-            List<Voos> listaDeVoo = reservaDao.buscarVoos(usuario.getCpf());
-            request.setAttribute("VoosUsuario", listaDeVoo);
-        }
+        List<Voos> listaDeVoo = ReservaDao.buscarVoos(usuario.getCpf());
+        request.setAttribute("VoosUsuario", listaDeVoo);
 
 
         return "forward:PaginaUsuario.jsp";

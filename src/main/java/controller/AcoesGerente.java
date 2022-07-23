@@ -55,39 +55,36 @@ public class AcoesGerente implements IAcao {
 
 
     public void criarVoo(String data, String origem, String destino, String preco, String assentos) throws SQLException, ClassNotFoundException, IOException, ParseException, ColecaoException, ConexaoException {
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            VooDAO vooDAO = new VooDAO(connection);
-            String dataFormat = data.replace("-", "/");
-            String cidadeOrigem = pegarCidade(origem);
-            String cidaeDestino = pegarCidade(destino);
-            ApiDistancia duracao = new ApiDistancia(cidaeDestino, cidadeOrigem);
-            Voos voo = new Voos(dataFormat, Double.parseDouble(preco), Aeroporto.valueOf(origem), Aeroporto.valueOf(destino), duracao.getTempo(), Integer.parseInt(assentos));
-            vooDAO.criarVOO(voo);
-        }
+
+
+        String dataFormat = data.replace("-", "/");
+        String cidadeOrigem = pegarCidade(origem);
+        String cidaeDestino = pegarCidade(destino);
+        ApiDistancia duracao = new ApiDistancia(cidaeDestino, cidadeOrigem);
+        Voos voo = new Voos(dataFormat, Double.parseDouble(preco), Aeroporto.valueOf(origem), Aeroporto.valueOf(destino), duracao.getTempo(), Integer.parseInt(assentos));
+        VooDAO.criarVOO(voo);
+
     }
 
 
-    public void cancelar(String numVoo) throws SQLException, ClassNotFoundException, ColecaoException, ConexaoException {
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            ReservaDao reservaDao = new ReservaDao(connection);
-            reservaDao.cancelarVoo(numVoo);
-            VooDAO vooDAO = new VooDAO(connection);
-            System.out.println("cancelar Entrei");
-            vooDAO.deletarVoo(Integer.parseInt(numVoo));
-        }
+    public void cancelar(String numVoo) throws ColecaoException {
+
+        ReservaDao.cancelarVoo(numVoo);
+        System.out.println("cancelar Entrei");
+        VooDAO.deletarVoo(Integer.parseInt(numVoo));
+
     }
 
 
     public void alterarVoo(String numVoo, String data, String origem, String destino, String preco, String assentos, String duracacao) throws SQLException, ClassNotFoundException, IOException, ParseException, ColecaoException, ConexaoException {
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            VooDAO vooDAO = new VooDAO(connection);
-            String dataFormat = data.replace("-", "/");
-            String cidadeOrigem = pegarCidade(origem);
-            String cidaeDestino = pegarCidade(destino);
-            ApiDistancia duracao = new ApiDistancia(cidaeDestino, cidadeOrigem);
-            Voos voo = new Voos(Integer.parseInt(numVoo), dataFormat, Double.parseDouble(preco), origem, destino, duracao.getTempo(), Integer.parseInt(assentos));
-            vooDAO.atualizarVoo(voo);
-        }
+
+        String dataFormat = data.replace("-", "/");
+        String cidadeOrigem = pegarCidade(origem);
+        String cidaeDestino = pegarCidade(destino);
+        ApiDistancia duracao = new ApiDistancia(cidaeDestino, cidadeOrigem);
+        Voos voo = new Voos(Integer.parseInt(numVoo), dataFormat, Double.parseDouble(preco), origem, destino, duracao.getTempo(), Integer.parseInt(assentos));
+        VooDAO.atualizarVoo(voo);
+
     }
 
     public String pegarCidade(String codigo) {

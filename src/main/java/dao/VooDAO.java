@@ -1,6 +1,8 @@
 package dao;
 
 import exception.ColecaoException;
+import exception.ConexaoException;
+import factory.ConectionFactory;
 import model.Voos;
 
 import java.sql.*;
@@ -10,13 +12,21 @@ import java.util.List;
 
 public class VooDAO {
 
-    private Connection connection;
+    private static Connection connection;
 
-    public VooDAO(Connection connection) {
-        this.connection = connection;
+    static {
+        try {
+            connection = new ConectionFactory().recuperarConexao();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ConexaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void criarVOO(Voos voo) throws ColecaoException {
+    public static void criarVOO(Voos voo) throws ColecaoException {
         String sql = "INSERT INTO voos (NMRVOO, DATA, PRECO, ORIGEM, DESTINO, DURACAOVOO, NUMEROASSENTOS) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -34,7 +44,7 @@ public class VooDAO {
 
     }
 
-    public void deletarVoo(int nmrVoo) throws ColecaoException {
+    public static void deletarVoo(int nmrVoo) throws ColecaoException {
         try (PreparedStatement stm = connection.prepareStatement("DELETE FROM voos WHERE NMRVOO = ?")) {
             stm.setInt(1, nmrVoo);
             System.out.println("Entrei sql");
@@ -44,7 +54,7 @@ public class VooDAO {
         }
     }
 
-    public Voos buscarVoo(String nmrVoo) throws ParseException,ColecaoException {
+    public static Voos buscarVoo(String nmrVoo) throws ParseException,ColecaoException {
         String query = "SELECT * FROM voos WHERE NMRVOO = ?";
 
         try (PreparedStatement stm = connection.prepareStatement(query)) {
@@ -66,7 +76,7 @@ public class VooDAO {
     }
 
 
-    public List<Voos> getVoos() throws ParseException,ColecaoException {
+    public static List<Voos> getVoos() throws ParseException,ColecaoException {
         List<Voos> voos = new LinkedList<>();
         try {
             String sql = "SELECT * FROM voos";
@@ -89,7 +99,7 @@ public class VooDAO {
         }
     }
 
-    public void atualizarVoo(Voos voo) throws SQLException,ColecaoException {
+    public static void atualizarVoo(Voos voo) throws ColecaoException {
         try (PreparedStatement stm = connection
                 .prepareStatement("UPDATE voos P SET P.DATA = ?, P.PRECO = ?, P.ORIGEM = ?, P.DESTINO = ?, P.DURACAOVOO = ?, P.NUMEROASSENTOS = ? WHERE NMRVOO = ?")) {
 

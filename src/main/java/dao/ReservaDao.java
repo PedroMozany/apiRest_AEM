@@ -1,6 +1,8 @@
 package dao;
 
 import exception.ColecaoException;
+import exception.ConexaoException;
+import factory.ConectionFactory;
 import model.Usuario;
 import model.Voos;
 
@@ -14,13 +16,25 @@ import java.util.List;
 
 public class ReservaDao {
 
-    private Connection connection;
+    private static  Connection connection;
 
-    public ReservaDao(Connection connection) {
-        this.connection = connection;
+
+    static {
+        try {
+            connection = new ConectionFactory().recuperarConexao();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ConexaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void criarReserva(String numVoo, String cpf) throws ColecaoException {
+
+
+
+    public static void criarReserva(String numVoo, String cpf) throws ColecaoException {
         String query = "INSERT INTO RESERVA(VOO,USUARIO) VALUE (?,?)";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, numVoo);
@@ -34,7 +48,7 @@ public class ReservaDao {
 
 
 
-    public List<Voos> buscarVoos(String cpf) throws SQLException, ParseException,ColecaoException {
+    public static List<Voos> buscarVoos(String cpf) throws SQLException, ParseException,ColecaoException {
         String query = "select * from voos right join(select numeroreserva, voo, usuario from reserva where usuario = ?)reserva on nmrVoo = reserva.voo";
 
         List<Voos> passagensCompradas = new LinkedList<>();
@@ -55,7 +69,7 @@ public class ReservaDao {
         }
     }
 
-    public List<Usuario> listPassageiros(String numVoo) throws ColecaoException {
+    public static List<Usuario> listPassageiros(String numVoo) throws ColecaoException {
         String query = "select  nome, cpf, email, senha from usuario right join(select numeroreserva, voo, usuario from reserva where voo = ?)reserva on cpf = reserva.usuario";
         List<Usuario> list = new LinkedList<>();
         try (PreparedStatement pst = connection.prepareStatement(query)) {
@@ -75,7 +89,7 @@ public class ReservaDao {
         }
     }
 
-    public void cancelarReserva(String numVoo,String cpf) throws ColecaoException {
+    public static void cancelarReserva(String numVoo,String cpf) throws ColecaoException {
         String query = "DELETE FROM reserva WHERE VOO = ? AND USUARIO = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, numVoo);
@@ -86,7 +100,7 @@ public class ReservaDao {
         }
     }
 
-    public void cancelarVoo(String numVoo) throws ColecaoException {
+    public static void cancelarVoo(String numVoo) throws ColecaoException {
         String query = "DELETE FROM reserva WHERE VOO = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, numVoo);

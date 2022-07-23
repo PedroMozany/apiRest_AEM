@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 public class Login implements IAcao {
     @Override
-    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ColecaoException, ConexaoException {
+    public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ColecaoException, ConexaoException, SQLException {
         HttpSession session = request.getSession();
 
         int status = response.getStatus();
@@ -32,42 +32,32 @@ public class Login implements IAcao {
         Usuario google = (Usuario) session.getAttribute("google");
 
 
+        Usuario usuario = UsuarioDAO.usuarioExiste(email, senha);
+        Gerente gerente = GerenteDAO.gerenteExiste(matricula, senha);
 
-
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-            GerenteDAO gerenteDAO = new GerenteDAO(connection);
-
-            Usuario usuario = usuarioDAO.usuarioExiste(email, senha);
-            Gerente gerente = gerenteDAO.gerenteExiste(matricula, senha);
-
-            if (email != null) {
-                if (usuario != null) {
-                    session = request.getSession();
-                    session.setAttribute("logado", usuario);
-                    return "redirect:Entrada?acao=MostraVoos";
-                } else {
-                    return "forward:telaLogin.jsp";
-                }
-            } else if(matricula != null) {
-                if (gerente != null) {
-                    session = request.getSession();
-                    session.setAttribute("logado", gerente);
-                    return "redirect:Entrada?acao=MostraPaginaG";
-                } else {
-                    return "forward:LoginGerente.jsp";
-                }
-            }else if (google != null){
+        if (email != null) {
+            if (usuario != null) {
                 session = request.getSession();
-                session.setAttribute("logado", google);
+                session.setAttribute("logado", usuario);
                 return "redirect:Entrada?acao=MostraVoos";
             } else {
                 return "forward:telaLogin.jsp";
             }
-
-
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } else if (matricula != null) {
+            if (gerente != null) {
+                session = request.getSession();
+                session.setAttribute("logado", gerente);
+                return "redirect:Entrada?acao=MostraPaginaG";
+            } else {
+                return "forward:LoginGerente.jsp";
+            }
+        } else if (google != null) {
+            session = request.getSession();
+            session.setAttribute("logado", google);
+            return "redirect:Entrada?acao=MostraVoos";
+        } else {
+            return "forward:telaLogin.jsp";
         }
+
     }
 }

@@ -24,16 +24,12 @@ public class MostraAlterarVoo implements IAcao {
         String numVoo = request.getParameter("numVoo");
         List<Aeroporto> list = Arrays.asList(Aeroporto.values());
 
-        Voos voos;
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            VooDAO vooDAO = new VooDAO(connection);
-            voos = vooDAO.buscarVoo(numVoo);
-        }
+        Voos voos = VooDAO.buscarVoo(numVoo);
 
 
         HttpSession session = request.getSession();
         session.setAttribute("aeroportos", list);
-        session.setAttribute("voos",voos);
+        session.setAttribute("voos", voos);
         return "forward:alterarVooGerente.jsp";
     }
 }

@@ -39,33 +39,28 @@ public class AcoesUsuario implements IAcao {
 
 
     public void finalizarCompra(String cpf, String numVoo) throws SQLException, ClassNotFoundException, ColecaoException, ConexaoException, ParseException {
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            ReservaDao reservaDao = new ReservaDao(connection);
-            reservaDao.criarReserva(numVoo, cpf);
-            atualizarVoo(numVoo);
-        }
+        ReservaDao.criarReserva(numVoo, cpf);
+        atualizarVoo(numVoo);
+
     }
 
-    public void atualizarVoo(String numVoo ) throws SQLException, ConexaoException, ClassNotFoundException, ColecaoException, ParseException {
-        try(Connection connection = new ConectionFactory().recuperarConexao()) {
-            VooDAO vooDAO = new VooDAO(connection);
-            Voos voo = vooDAO.buscarVoo(numVoo);
-            System.out.println(voo);
-            voo.desconto();
-            voo.decrementarAss();
-            vooDAO.atualizarVoo(voo);
-            System.out.println(voo.getNumeroAssentos());
-            System.out.println(voo.getPreco());
-        }
+    public void atualizarVoo(String numVoo) throws SQLException, ColecaoException, ParseException {
+
+        Voos voo = VooDAO.buscarVoo(numVoo);
+        System.out.println(voo);
+        voo.desconto();
+        voo.decrementarAss();
+        VooDAO.atualizarVoo(voo);
+        System.out.println(voo.getNumeroAssentos());
+        System.out.println(voo.getPreco());
+
     }
 
 
+    public void cancelarTicket(String cpf, String numVoo) throws ColecaoException {
+        ReservaDao reservaDao = new ReservaDao();
+        reservaDao.cancelarReserva(numVoo, cpf);
 
-    public void cancelarTicket(String cpf, String numVoo) throws SQLException, ClassNotFoundException, ColecaoException, ConexaoException {
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            ReservaDao reservaDao = new ReservaDao(connection);
-            reservaDao.cancelarReserva(numVoo, cpf);
-        }
     }
 
 }

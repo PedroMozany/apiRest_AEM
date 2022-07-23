@@ -22,11 +22,9 @@ public class MostraPaginaG implements IAcao {
     public String acao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException, ColecaoException, ConexaoException {
         System.out.println("MostraPaginaG");
 
-        List<Voos> list;
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            VooDAO vooDAO = new VooDAO(connection);
-            list = vooDAO.getVoos();
-        }
+
+        List<Voos> list = VooDAO.getVoos();
+
         for (Voos voos : list) {
             System.out.println(voos);
             System.out.println(voos);

@@ -24,21 +24,18 @@ public class ApiRestJson extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+
         List<Voos> list;
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            VooDAO vooDAO = new VooDAO(connection);
-            list = vooDAO.getVoos();
-        } catch (SQLException | ColecaoException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        try {
+            list = VooDAO.getVoos();
         } catch (ParseException e) {
             throw new RuntimeException(e);
-        } catch (ConexaoException e) {
+        } catch (ColecaoException e) {
             throw new RuntimeException(e);
         }
 
-        String valor = request.getHeader("accept");
+
         Gson gson = new Gson();
         String json = gson.toJson(list);
         System.out.println(json);

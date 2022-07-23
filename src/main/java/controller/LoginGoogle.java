@@ -26,21 +26,20 @@ public class LoginGoogle implements IAcao {
 
         System.out.println(token);
 
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-            Usuario autenticar = usuarioDAO.usuarioExistePorEmail(usuario.getEmail());
 
-            if (autenticar == null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("google", usuario);
-                return "redirect:Entrada?acao=MostraCadastro";
-            } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("google", autenticar);
-               return "redirect:Entrada?acao=Login";
-            }
+        Usuario autenticar = UsuarioDAO.usuarioExistePorEmail(usuario.getEmail());
+
+        if (autenticar == null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("google", usuario);
+            return "redirect:Entrada?acao=MostraCadastro";
+        } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("google", autenticar);
+            return "redirect:Entrada?acao=Login";
         }
     }
-
-
 }
+
+
+

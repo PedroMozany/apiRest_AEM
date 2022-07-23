@@ -24,14 +24,9 @@ public class MostrarPaginaCompra implements IAcao {
         String email = request.getParameter("email");
 
 
-        Voos voos;
-        Usuario usuario;
-        try (Connection connection = new ConectionFactory().recuperarConexao()) {
-            VooDAO vooDAO = new VooDAO(connection);
-            UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-            usuario = usuarioDAO.usuarioExiste(email, cpf);
-            voos = vooDAO.buscarVoo(numVoo);
-        }
+        Usuario usuario = UsuarioDAO.usuarioExiste(email, cpf);
+        Voos voos = VooDAO.buscarVoo(numVoo);
+
 
         request.setAttribute("usuario", usuario);
         request.setAttribute("compra", voos);

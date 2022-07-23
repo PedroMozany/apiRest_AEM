@@ -1,20 +1,32 @@
 package dao;
 
 import exception.ColecaoException;
+import exception.ConexaoException;
+import factory.ConectionFactory;
 import model.Usuario;
 
 import java.sql.*;
 
 public class UsuarioDAO {
 
-    private Connection connection;
+    private static Connection connection;
 
-   public UsuarioDAO(Connection connection){
-        this.connection = connection;
+
+
+    static {
+        try {
+            connection = new ConectionFactory().recuperarConexao();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ConexaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
-    public void incluir(Usuario usuario) throws ColecaoException {
+    public static void incluir(Usuario usuario) throws ColecaoException {
         String sql = "INSERT INTO usuario (NOME, CPF, EMAIL, SENHA) VALUES (?, ?, ?, ?)";
 
         try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
@@ -40,7 +52,7 @@ public class UsuarioDAO {
         }
     }
 
-    public Usuario usuarioExistePorEmail(String email) throws ColecaoException {
+    public static Usuario usuarioExistePorEmail(String email) throws ColecaoException {
         String sql = "SELECT * FROM usuario WHERE EMAIL = ?";
 
         try(PreparedStatement pstm = connection.prepareStatement(sql)){
@@ -64,7 +76,7 @@ public class UsuarioDAO {
 
 
 
-    public Usuario usuarioExiste(String email, String senha) throws SQLException {
+    public static Usuario usuarioExiste(String email, String senha) throws SQLException {
         String sql = "SELECT * FROM usuario WHERE EMAIL = ? AND SENHA = ?";
 
         try(PreparedStatement pstm = connection.prepareStatement(sql)){
