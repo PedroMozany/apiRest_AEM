@@ -4,7 +4,6 @@ import dao.ReservaDao;
 import dao.VooDAO;
 import exception.ColecaoException;
 import exception.ConexaoException;
-import factory.ConectionFactory;
 import model.Aeroporto;
 import model.Voos;
 import util.ApiDistancia;
@@ -13,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 
@@ -54,8 +52,7 @@ public class AcoesGerente implements IAcao {
     }
 
 
-    public void criarVoo(String data, String origem, String destino, String preco, String assentos) throws SQLException, ClassNotFoundException, IOException, ParseException, ColecaoException, ConexaoException {
-
+    public void criarVoo(String data, String origem, String destino, String preco, String assentos) throws IOException, ParseException, ColecaoException {
 
         String dataFormat = data.replace("-", "/");
         String cidadeOrigem = pegarCidade(origem);
@@ -68,7 +65,6 @@ public class AcoesGerente implements IAcao {
 
 
     public void cancelar(String numVoo) throws ColecaoException {
-
         ReservaDao.cancelarVoo(numVoo);
         System.out.println("cancelar Entrei");
         VooDAO.deletarVoo(Integer.parseInt(numVoo));

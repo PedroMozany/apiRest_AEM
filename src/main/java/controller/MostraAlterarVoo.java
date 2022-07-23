@@ -24,7 +24,7 @@ public class MostraAlterarVoo implements IAcao {
         String numVoo = request.getParameter("numVoo");
         List<Aeroporto> list = Arrays.asList(Aeroporto.values());
 
-        Voos voos = VooDAO.buscarVoo(numVoo);
+        Voos voos = VooDAO.buscarVoo(Integer.parseInt(numVoo));
 
 
         HttpSession session = request.getSession();

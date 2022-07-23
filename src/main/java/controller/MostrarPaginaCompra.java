@@ -25,7 +25,7 @@ public class MostrarPaginaCompra implements IAcao {
 
 
         Usuario usuario = UsuarioDAO.usuarioExiste(email, cpf);
-        Voos voos = VooDAO.buscarVoo(numVoo);
+        Voos voos = VooDAO.buscarVoo(Integer.parseInt(numVoo));
 
 
         request.setAttribute("usuario", usuario);

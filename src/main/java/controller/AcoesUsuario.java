@@ -29,7 +29,7 @@ public class AcoesUsuario implements IAcao {
             cancelarTicket(cpf, numero);
             return "redirect:Entrada?acao=MostraPerfil";
         } else if (finalizar != null) {
-            finalizarCompra(cpf, numero);
+            finalizarCompra(cpf, Integer.parseInt(numero));
             return "redirect:Entrada?acao=MostraPerfil";
         } else {
             return "redirect:Entrada?acao=MostraPerfil";
@@ -38,13 +38,13 @@ public class AcoesUsuario implements IAcao {
     }
 
 
-    public void finalizarCompra(String cpf, String numVoo) throws SQLException, ClassNotFoundException, ColecaoException, ConexaoException, ParseException {
-        ReservaDao.criarReserva(numVoo, cpf);
+    public void finalizarCompra(String cpf, int numVoo) throws ColecaoException, ParseException {
+        ReservaDao.criarReserva(String.valueOf(numVoo), cpf);
         atualizarVoo(numVoo);
 
     }
 
-    public void atualizarVoo(String numVoo) throws SQLException, ColecaoException, ParseException {
+    public void atualizarVoo(int numVoo) throws ColecaoException, ParseException {
 
         Voos voo = VooDAO.buscarVoo(numVoo);
         System.out.println(voo);

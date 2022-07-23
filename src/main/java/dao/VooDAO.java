@@ -27,16 +27,15 @@ public class VooDAO {
     }
 
     public static void criarVOO(Voos voo) throws ColecaoException {
-        String sql = "INSERT INTO voos (NMRVOO, DATA, PRECO, ORIGEM, DESTINO, DURACAOVOO, NUMEROASSENTOS) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO voos (DATA, PRECO, ORIGEM, DESTINO, DURACAOVOO, NUMEROASSENTOS) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            pstm.setInt(1, voo.getNmrDoVoo());
-            pstm.setString(2, voo.getData());
-            pstm.setDouble(3, voo.getPreco());
-            pstm.setString(4, String.valueOf(voo.getOrigem().getCodigo()));
-            pstm.setString(5, String.valueOf(voo.getDestino().getCodigo()));
-            pstm.setString(6, voo.getDuracaoVoo());
-            pstm.setInt(7, voo.getNumeroAssentos());
+            pstm.setString(1, voo.getData());
+            pstm.setDouble(2, voo.getPreco());
+            pstm.setString(3, String.valueOf(voo.getOrigem().getCodigo()));
+            pstm.setString(4, String.valueOf(voo.getDestino().getCodigo()));
+            pstm.setString(5, voo.getDuracaoVoo());
+            pstm.setInt(6, voo.getNumeroAssentos());
             pstm.execute();
         } catch (SQLException e){
             throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
@@ -54,11 +53,11 @@ public class VooDAO {
         }
     }
 
-    public static Voos buscarVoo(String nmrVoo) throws ParseException,ColecaoException {
+    public static Voos buscarVoo(int nmrVoo) throws ParseException,ColecaoException {
         String query = "SELECT * FROM voos WHERE NMRVOO = ?";
 
         try (PreparedStatement stm = connection.prepareStatement(query)) {
-            stm.setString(1, nmrVoo);
+            stm.setInt(1, nmrVoo);
             stm.execute();
 
             try (ResultSet rst = stm.getResultSet()) {
