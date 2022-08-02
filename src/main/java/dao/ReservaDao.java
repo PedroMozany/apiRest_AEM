@@ -34,12 +34,13 @@ public class ReservaDao {
 
 
 
-    public static void criarReserva(String numVoo, String cpf) throws ColecaoException {
-        String query = "INSERT INTO RESERVA(VOO,USUARIO) VALUE (?,?)";
+    public static void criarReserva(int numVoo, String cpf) throws ColecaoException {
+        String query = "INSERT INTO RESERVA(VOO,USUARIO) VALUES(?,?)";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setString(1, numVoo);
+            pst.setInt(1, numVoo);
             pst.setString(2, cpf);
             pst.execute();
+            System.out.println("entrei");
         }catch (SQLException e){
             throw new ColecaoException("Erro ao fechar manipularadores de banco de dados!" + e);
         }
@@ -89,10 +90,10 @@ public class ReservaDao {
         }
     }
 
-    public static void cancelarReserva(String numVoo,String cpf) throws ColecaoException {
+    public static void cancelarReserva(int numVoo,String cpf) throws ColecaoException {
         String query = "DELETE FROM reserva WHERE VOO = ? AND USUARIO = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setString(1, numVoo);
+            pst.setInt(1, numVoo);
             pst.setString(2,cpf);
             pst.execute();
         }catch (SQLException e){

@@ -26,7 +26,7 @@ public class AcoesUsuario implements IAcao {
         System.out.println(cancelar);
 
         if (cancelar != null) {
-            cancelarTicket(cpf, numero);
+            cancelarTicket(cpf, Integer.parseInt(numero));
             return "redirect:Entrada?acao=MostraPerfil";
         } else if (finalizar != null) {
             finalizarCompra(cpf, Integer.parseInt(numero));
@@ -39,7 +39,7 @@ public class AcoesUsuario implements IAcao {
 
 
     public void finalizarCompra(String cpf, int numVoo) throws ColecaoException, ParseException {
-        ReservaDao.criarReserva(String.valueOf(numVoo), cpf);
+        ReservaDao.criarReserva(numVoo, cpf);
         atualizarVoo(numVoo);
 
     }
@@ -57,7 +57,7 @@ public class AcoesUsuario implements IAcao {
     }
 
 
-    public void cancelarTicket(String cpf, String numVoo) throws ColecaoException {
+    public void cancelarTicket(String cpf, int numVoo) throws ColecaoException {
         ReservaDao reservaDao = new ReservaDao();
         reservaDao.cancelarReserva(numVoo, cpf);
 
